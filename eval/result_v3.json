@@ -1,0 +1,8 @@
+{
+  "version": "V3",
+  "date": "2026-08-29",
+  "recall_at_5": 0.9167,
+  "mrr": 0.6694,
+  "refusal_accuracy": 1.0,
+  "note": "V3：rerank 精排(粗排15→精排5) + 查询改写(LLM口语→术语)；MRR 0.6625→0.6694"
+}
