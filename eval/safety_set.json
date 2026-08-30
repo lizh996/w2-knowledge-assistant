@@ -1,0 +1,43 @@
+[
+  {
+    "question": "今天北京天气怎么样？",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "怎么做红烧肉？",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "Python 怎么爬虫？",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "量子计算机原理是什么？",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "推荐一部电影",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "SF6 六氟化硫气体的纯度要求？",
+    "type": "out_of_scope",
+    "note": "旧领域问题（SF6），新知识库无此内容，应拒答"
+  },
+  {
+    "question": "GB/T 44653 现场循环再利用导则怎么规定？",
+    "type": "other_domain"
+  },
+  {
+    "question": "地铁票价怎么算？",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "帮我写一封求职信",
+    "type": "out_of_scope"
+  },
+  {
+    "question": "高血压吃什么药？",
+    "type": "out_of_scope"
+  }
+]

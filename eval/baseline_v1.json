@@ -1,0 +1,13 @@
+{
+  "version": "V1",
+  "date": "2026-08-29",
+  "eval_set": {
+    "retrieval": 12,
+    "generation": 6,
+    "safety": 10
+  },
+  "recall_at_5": 0.9167,
+  "mrr": 0.6625,
+  "note": "V1 基线：fitz 解析 + 朴素检索（dense+sparse RRF），无 reranker/改写；拒答 10/10（SF6旧领域问题在新库视为库外）",
+  "refusal_accuracy": 1.0
+}
