@@ -1,0 +1,12 @@
+# SF6 知识库问答后端依赖（langchain 环境已验证版本）
+fastapi==0.139.0
+uvicorn==0.47.0
+pydantic==2.13.4
+qdrant-client==1.19.0
+FlagEmbedding==1.4.2
+sentence-transformers==3.4.1
+openai==2.38.0
+python-dotenv>=1.0.0
+python-multipart>=0.0.20
+numpy
+torch>=2.13.0

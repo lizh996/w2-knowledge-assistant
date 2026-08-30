@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>变压器检测知识库</title>
+  <link rel="stylesheet" href="/katex.min.css">
+  <script src="/katex.min.js"></script>
+  <style>
+    :root {
+      --bg: #fbfaf9;
+      --bg-2: #f3f1ff;
+      --panel: #ffffff;
+      --line: #e8e6e3;
+      --line-strong: rgba(108,75,244,.35);
+      --text: #1a1a1a;
+      --muted: #8a8a8a;
+      --accent: #6c4bf4;
+      --cyan: #6c4bf4;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --bad: #ef4444;
+      --input: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #f5f2ff);
+      font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    button, textarea { font: inherit; }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fbfaf9;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(34,211,238,.16);
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease, color .16s ease, opacity .16s ease;
+    }
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(34,211,238,.26);
+      filter: saturate(1.08);
+    }
+    button:active:not(:disabled) {
+      transform: translateY(1px) scale(.99);
+      box-shadow: 0 6px 16px rgba(34,211,238,.18);
+    }
+    button:focus-visible, textarea:focus-visible, summary:focus-visible {
+      outline: 2px solid rgba(56,189,248,.72);
+      outline-offset: 3px;
+    }
+    button:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
+    .ghost {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      box-shadow: none;
+    }
+    .ghost:hover:not(:disabled) {
+      color: var(--accent);
+      border-color: rgba(56,189,248,.58);
+      background: rgba(56,189,248,.1);
+      box-shadow: 0 10px 24px rgba(56,189,248,.12);
+    }
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 18px;
+      background: #ffffff;
+      border-right: 1px solid var(--line);
+    }
+    .brand {
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(139,160,189,.14);
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: 0;
+    }
+    .brand p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .side-block { display: grid; gap: 10px; }
+    #examples { display: grid; gap: 8px; }
+    .sidebar-toggle {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border-radius: 999px;
+      font-size: 18px;
+      line-height: 1;
+      box-shadow: none;
+    }
+    .side-title {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .status-card, .starter {
+      border: 1px solid rgba(139,160,189,.14);
+      border-radius: 8px;
+      background: rgba(255,255,255,.7);
+      padding: 11px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .status-card { display: grid; gap: 8px; }
+    .status-card:hover {
+      border-color: rgba(56,189,248,.28);
+      background: rgba(255,255,255,.85);
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    .status-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #dce8f7;
+      font-size: 13px;
+    }
+    .status-line span:last-child { color: var(--muted); }
+    .starter {
+      width: 100%;
+      color: #dce8f7;
+      text-align: left;
+      line-height: 1.45;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: none;
+    }
+    .starter:hover {
+      border-color: rgba(56,189,248,.38);
+      background: rgba(56,189,248,.09);
+      transform: translateX(3px);
+      box-shadow: 0 10px 24px rgba(56,189,248,.1);
+    }
+    .starter:active {
+      transform: translateX(1px) scale(.995);
+    }
+    .side-actions {
+      margin-top: auto;
+      display: grid;
+      gap: 8px;
+    }
+    .app.sidebar-collapsed {
+      grid-template-columns: 84px minmax(0, 1fr);
+    }
+    .app.sidebar-collapsed .sidebar {
+      align-items: center;
+      padding: 16px 10px;
+    }
+    .app.sidebar-collapsed .brand {
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
+    .app.sidebar-collapsed .brand-row {
+      justify-content: center;
+      flex-direction: column;
+    }
+    .app.sidebar-collapsed .brand h1 {
+      font-size: 0;
+    }
+    .app.sidebar-collapsed .brand h1::before {
+      content: "变压器";
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .app.sidebar-collapsed .brand p,
+    .app.sidebar-collapsed .new-chat,
+    .app.sidebar-collapsed .side-block,
+    .app.sidebar-collapsed .side-actions {
+      display: none;
+    }
+    .app.sidebar-collapsed .sidebar-toggle {
+      transform: rotate(180deg);
+    }
+    .main {
+      min-width: 0;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 24px;
+      background: rgba(255,255,255,.85);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .topbar-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .topbar-title h2 {
+      margin: 0;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      max-width: 100%;
+      color: var(--muted);
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: border-color .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+    }
+    .badge:hover {
+      border-color: rgba(56,189,248,.3);
+      background: rgba(255,255,255,.88);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--ok);
+      box-shadow: 0 0 0 5px rgba(52,211,153,.12);
+      flex: 0 0 auto;
+    }
+    .chat-area {
+      min-height: 0;
+      overflow-y: auto;
+      padding: 28px 24px 18px;
+      scroll-behavior: smooth;
+    }
+    .chat-inner {
+      width: min(900px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+    .welcome {
+      margin: 10vh auto 20px;
+      width: min(700px, 100%);
+      text-align: center;
+    }
+    .welcome h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+    .welcome p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    .message {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .message.user { justify-content: flex-end; }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fbfaf9;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      font-size: 12px;
+      font-weight: 900;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .message:hover .avatar {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(56,189,248,.12);
+    }
+    .message.user .avatar {
+      color: #dff7ff;
+      background: rgba(56,189,248,.16);
+      border: 1px solid rgba(56,189,248,.24);
+    }
+    .bubble-wrap {
+      max-width: min(760px, calc(100% - 46px));
+      display: grid;
+      gap: 10px;
+    }
+    .message.user .bubble-wrap { justify-items: end; }
+    .bubble {
+      border: 1px solid rgba(139,160,189,.14);
+      border-radius: 8px;
+      padding: 13px 15px;
+      background: rgba(255,255,255,.92);
+      color: #dce8f7;
+      line-height: 1.78;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .message.assistant:hover .bubble {
+      border-color: rgba(56,189,248,.26);
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    }
+    .message.user .bubble {
+      color: #4c2fd4;
+      background: #f0ebff;
+      border-color: rgba(108,75,244,.3);
+    }
+    .message.user:hover .bubble {
+      border-color: rgba(56,189,248,.42);
+      background: rgba(56,189,248,.18);
+    }
+    .bubble.refused {
+      border-color: rgba(245,158,11,.35);
+      background: rgba(64,43,18,.82);
+    }
+    .bubble.loading {
+      border-color: rgba(56,189,248,.28);
+      background: rgba(255,255,255,.8);
+    }
+    .typing-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #dce8f7;
+      font-weight: 700;
+    }
+    .typing-dots {
+      display: inline-flex;
+      gap: 4px;
+    }
+    .typing-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+      animation: typingPulse 1.1s infinite ease-in-out;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: .16s; }
+    .typing-dots span:nth-child(3) { animation-delay: .32s; }
+    @keyframes typingPulse {
+      0%, 80%, 100% { opacity: .3; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-2px); }
+    }
+    .refuse-title {
+      color: var(--warn);
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+    .suggestions {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .citations {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .citation {
+      color: #baf7df;
+      border-color: rgba(52,211,153,.25);
+      background: rgba(20,83,45,.28);
+    }
+    .citation:hover {
+      border-color: rgba(52,211,153,.48);
+      background: rgba(20,83,45,.38);
+    }
+    .evidence-toggle {
+      width: 100%;
+      border: 1px solid rgba(56,189,248,.15);
+      border-radius: 8px;
+      background: rgba(255,255,255,.6);
+      padding: 0;
+      overflow: hidden;
+      transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .evidence-toggle:hover, .evidence-toggle[open] {
+      border-color: rgba(56,189,248,.38);
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 12px 28px rgba(0,0,0,.16);
+    }
+    .evidence-toggle summary {
+      cursor: pointer;
+      padding: 11px 13px;
+      color: var(--muted);
+      font-size: 13px;
+      list-style-position: inside;
+      transition: color .18s ease, background .18s ease;
+    }
+    .evidence-toggle summary:hover {
+      color: #dce8f7;
+      background: rgba(56,189,248,.06);
+    }
+    .evidence-body {
+      display: grid;
+      gap: 12px;
+      padding: 0 13px 13px;
+    }
+    .inspect {
+      border: 1px solid rgba(56,189,248,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.6);
+      padding: 12px;
+      transition: border-color .18s ease, background .18s ease;
+    }
+    .inspect:hover {
+      border-color: rgba(56,189,248,.32);
+      background: rgba(255,255,255,.88);
+    }
+    .inspect-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .inspect-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: #e5edf7;
+    }
+    .inspect-total {
+      color: var(--ok);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .inspect-row {
+      display: grid;
+      gap: 5px;
+      border-top: 1px solid rgba(139,160,189,.12);
+      padding-top: 9px;
+      margin-top: 9px;
+    }
+    .inspect-label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .inspect-value {
+      color: #dce8f7;
+      font-size: 13px;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+    .inspect-metadata {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .inspect-hit {
+      border: 1px solid rgba(139,160,189,.13);
+      border-radius: 8px;
+      background: rgba(255,255,255,.88);
+      padding: 9px;
+      color: #dce8f7;
+      font-size: 12px;
+      line-height: 1.55;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .inspect-hit:hover {
+      transform: translateX(3px);
+      border-color: rgba(56,189,248,.28);
+      background: rgba(255,255,255,.88);
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .step {
+      border: 1px solid rgba(139,160,189,.14);
+      border-radius: 8px;
+      padding: 9px;
+      background: rgba(255,255,255,.88);
+      min-width: 0;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
+    }
+    .step:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56,189,248,.3);
+      background: rgba(255,255,255,.88);
+    }
+    .step-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--text);
+      font-size: 12px;
+    }
+    .step .dot {
+      width: 7px;
+      height: 7px;
+      box-shadow: none;
+    }
+    .step.skipped .dot { background: var(--muted); }
+    .step.failed .dot { background: var(--bad); }
+    .step.running {
+      border-color: rgba(56,189,248,.45);
+      background: rgba(255,255,255,.88);
+    }
+    .step.running .dot {
+      background: var(--accent);
+      animation: stepPulse 1.1s infinite ease-in-out;
+    }
+    .step.pending { opacity: .7; }
+    .step.pending .dot { background: var(--muted); }
+    @keyframes stepPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(56,189,248,.28); }
+      50% { opacity: .55; box-shadow: 0 0 0 5px rgba(56,189,248,.08); }
+    }
+    .step-time {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 6px;
+    }
+    .live-flow-panel {
+      border: 1px solid rgba(56,189,248,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.6);
+      padding: 12px;
+      transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .live-flow-panel:hover {
+      border-color: rgba(56,189,248,.34);
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 12px 28px rgba(0,0,0,.16);
+    }
+    .live-flow-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: #dce8f7;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .live-flow-head span:last-child {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .evidence-list {
+      display: grid;
+      gap: 10px;
+    }
+    .evidence {
+      border: 1px solid rgba(56,189,248,.17);
+      background: rgba(255,255,255,.88);
+      border-radius: 8px;
+      padding: 12px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .evidence:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56,189,248,.38);
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    }
+    .evidence-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+    .evidence-title {
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .score {
+      color: var(--ok);
+      font-weight: 800;
+    }
+    .evidence-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 8px 0;
+      line-height: 1.55;
+    }
+    .evidence-content {
+      color: #cbd8ea;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(139,160,189,.18);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--ok));
+      transition: width .45s ease;
+    }
+    .empty {
+      border: 1px dashed rgba(139,160,189,.28);
+      border-radius: 8px;
+      padding: 18px 14px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .media {
+      display: grid;
+      gap: 12px;
+    }
+    .media img, .mermaid-box {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      color: var(--text);
+      padding: 8px;
+    }
+    details.prompt-trace { margin-top: 10px; }
+    details.prompt-trace summary {
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 13px;
+      transition: color .18s ease;
+    }
+    details.prompt-trace summary:hover {
+      color: #dce8f7;
+    }
+    pre {
+      max-height: 260px;
+      overflow: auto;
+      white-space: pre-wrap;
+      color: #cbd8ea;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(139,160,189,.16);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+    }
+    .composer-wrap {
+      position: sticky;
+      bottom: 0;
+      z-index: 4;
+      padding: 14px 24px 20px;
+      background: linear-gradient(180deg, rgba(251,250,249,0), #ffffff 24%, rgba(255,255,255,.96));
+    }
+    .composer {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      position: sticky;
+      bottom: 12px;
+    }
+    .composer {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      position: sticky;
+      bottom: 16px;
+    }
+    .composer-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1.5px solid var(--line-strong);
+      border-radius: 24px;
+      background: var(--input);
+      box-shadow: 0 8px 30px rgba(108,75,244,.12);
+      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .composer-box textarea {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 15px;
+      resize: none;
+      line-height: 1.5;
+      padding: 4px 2px;
+    }
+    .composer-box #askBtn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .composer-box #askBtn:hover { background: #5a3cd8; transform: scale(1.06); }
+    .new-chat {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 14px;
+      cursor: pointer;
+      transition: background .15s ease, color .15s ease;
+    }
+    .new-chat:hover { background: var(--accent); color: #fff; }
+    .composer-box:hover {
+      border-color: rgba(56,189,248,.48);
+      background: rgba(255,255,255,.96);
+    }
+    .composer-box:focus-within {
+      border-color: rgba(52,211,153,.72);
+      box-shadow: 0 18px 48px rgba(0,0,0,.34), 0 0 0 4px rgba(52,211,153,.1);
+    }
+    textarea {
+      width: 100%;
+      max-height: 180px;
+      min-height: 52px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      padding: 8px 10px;
+      line-height: 1.6;
+    }
+    .composer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      min-height: 18px;
+    }
+    .error {
+      display: none;
+      color: #fecaca;
+    }
+    @media (max-width: 960px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .side-block { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .side-title { grid-column: 1 / -1; }
+      .side-actions {
+        margin-top: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar { position: static; }
+    }
+    @media (max-width: 640px) {
+      .sidebar, .topbar, .chat-area, .composer-wrap { padding-left: 12px; padding-right: 12px; }
+      .side-block, .side-actions, .timeline { grid-template-columns: 1fr; }
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .topbar-title { width: 100%; justify-content: space-between; }
+      .bubble-wrap { max-width: calc(100% - 42px); }
+      .composer-box { grid-template-columns: 1fr; }
+      .composer-box button { width: 100%; }
+      .welcome { margin-top: 4vh; text-align: left; }
+    }
+
+    /* ===== Kimi light theme override ===== */
+    :root {
+      --bg: #fbfaf9;
+      --bg-2: #f6f1ff;
+      --panel: #ffffff;
+      --line: #e8e6e3;
+      --line-strong: #ddd6fe;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --accent: #6c4bf4;
+      --cyan: #8b5cf6;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --bad: #ef4444;
+      --input: #ffffff;
+      --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.08);
+      --shadow-lg: 0 16px 36px rgba(15,23,42,.1);
+    }
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(108,75,244,.08), transparent 24%),
+        linear-gradient(180deg, #fbfaf9, #f8f5ff 58%, #fbfaf9);
+    }
+    button {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      box-shadow: 0 10px 24px rgba(108,75,244,.16);
+    }
+    button:hover:not(:disabled) {
+      box-shadow: 0 14px 30px rgba(108,75,244,.24);
+    }
+    button:focus-visible, textarea:focus-visible, summary:focus-visible {
+      outline: 2px solid rgba(108,75,244,.42);
+    }
+    .ghost {
+      color: #4f46e5;
+      background: #fff;
+      border: 1px solid #ddd6fe;
+      box-shadow: none;
+    }
+    .ghost:hover:not(:disabled) {
+      color: #5b21b6;
+      border-color: rgba(108,75,244,.35);
+      background: #f5f3ff;
+      box-shadow: 0 8px 20px rgba(108,75,244,.1);
+    }
+    .app {
+      grid-template-columns: 260px minmax(0, 1fr);
+    }
+    .sidebar {
+      background: rgba(255,255,255,.88);
+      border-right: 1px solid var(--line);
+      box-shadow: 10px 0 32px rgba(15,23,42,.04);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      border-bottom-color: var(--line);
+    }
+    .brand h1 {
+      color: var(--text);
+      font-size: 18px;
+    }
+    .brand p, .side-title, .status-line span:last-child, .suggestions,
+    .step-time, .evidence-meta, .composer-meta, details.prompt-trace summary {
+      color: var(--muted);
+    }
+    .side-title {
+      font-weight: 800;
+    }
+    .status-card, .starter {
+      border-color: var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .status-card:hover, .starter:hover {
+      border-color: rgba(108,75,244,.24);
+      background: #fbfaff;
+      box-shadow: 0 10px 24px rgba(108,75,244,.08);
+    }
+    .status-line {
+      color: var(--text);
+    }
+    .starter {
+      color: #374151;
+      font-weight: 700;
+    }
+    .starter:hover {
+      color: #5b21b6;
+      transform: translateX(3px);
+    }
+    .sidebar-toggle {
+      color: #5b21b6;
+      background: #f0ebff;
+      border: 1px solid #ddd6fe;
+    }
+    .sidebar-toggle:hover:not(:disabled) {
+      color: #4c1d95;
+      background: #ebe5ff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(108,75,244,.12);
+    }
+    .topbar {
+      background: rgba(255,255,255,.78);
+      border-bottom-color: var(--line);
+      box-shadow: 0 8px 24px rgba(15,23,42,.04);
+    }
+    .topbar-title h2 {
+      color: var(--text);
+    }
+    .badge {
+      color: #5b21b6;
+      background: #f0ebff;
+      border-color: #ddd6fe;
+    }
+    .badge:hover {
+      background: #ebe5ff;
+      border-color: rgba(108,75,244,.28);
+    }
+    .chat-inner {
+      width: min(760px, 100%);
+      gap: 20px;
+    }
+    .welcome {
+      width: min(680px, 100%);
+      margin-top: 12vh;
+    }
+    .welcome h2 {
+      color: var(--text);
+      font-size: 28px;
+    }
+    .welcome p {
+      color: var(--muted);
+    }
+    .avatar {
+      color: var(--accent);
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      box-shadow: 0 8px 18px rgba(108,75,244,.16);
+    }
+    .message.user .avatar {
+      color: #5b21b6;
+      background: #f0ebff;
+      border-color: #ddd6fe;
+      box-shadow: none;
+    }
+    .bubble-wrap {
+      max-width: min(760px, calc(100% - 46px));
+    }
+    .bubble {
+      color: var(--text);
+      background: #fff;
+      border-color: var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .message.assistant .bubble {
+      border-left: 4px solid var(--accent);
+    }
+    .message.assistant:hover .bubble {
+      border-color: #ddd6fe;
+      border-left-color: var(--accent);
+      background: #fff;
+      box-shadow: var(--shadow-lg);
+    }
+    .message.user .bubble {
+      color: #26145f;
+      background: #f0ebff;
+      border-color: #ddd6fe;
+      border-radius: 16px 16px 6px 16px;
+      box-shadow: none;
+    }
+    .message.user:hover .bubble {
+      border-color: rgba(108,75,244,.28);
+      background: #ebe5ff;
+    }
+    .bubble.refused {
+      border-color: rgba(245,158,11,.26);
+      background: #fffbeb;
+      color: #78350f;
+    }
+    .bubble.loading {
+      border-color: #ddd6fe;
+      background: #fff;
+      color: var(--text);
+    }
+    .typing-line {
+      color: #4b5563;
+    }
+    .typing-dots span {
+      background: var(--accent);
+    }
+    .refuse-title {
+      color: #b45309;
+    }
+    .citation {
+      color: #166534;
+      border-color: rgba(34,197,94,.2);
+      background: #f0fdf4;
+    }
+    .citation:hover {
+      border-color: rgba(34,197,94,.35);
+      background: #dcfce7;
+    }
+    .evidence-toggle, .inspect, .live-flow-panel, .evidence, .step, .inspect-hit {
+      background: #fff;
+      border-color: var(--line);
+      border-radius: 14px;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04);
+    }
+    .evidence-toggle:hover, .evidence-toggle[open], .inspect:hover,
+    .live-flow-panel:hover, .evidence:hover, .step:hover, .inspect-hit:hover {
+      background: #fbfaff;
+      border-color: rgba(108,75,244,.24);
+      box-shadow: 0 10px 24px rgba(108,75,244,.08);
+    }
+    .evidence-toggle summary {
+      color: #5b21b6;
+      font-weight: 800;
+    }
+    .evidence-toggle summary:hover {
+      color: #4c1d95;
+      background: #f7f4ff;
+    }
+    .inspect-title, .live-flow-head, .evidence-title, .step-head {
+      color: var(--text);
+    }
+    .inspect-value, .inspect-hit, .evidence-content {
+      color: #374151;
+    }
+    .inspect-row {
+      border-top-color: var(--line);
+    }
+    .inspect-total, .score {
+      color: var(--accent);
+    }
+    .timeline {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .step.running {
+      border-color: rgba(108,75,244,.35);
+      background: #f7f4ff;
+    }
+    .step.running .dot {
+      background: var(--accent);
+    }
+    .step.skipped .dot, .step.pending .dot {
+      background: #c7c2bc;
+    }
+    .step.failed .dot {
+      background: var(--bad);
+    }
+    .empty {
+      color: var(--muted);
+      border-color: #ddd6fe;
+      background: #fbfaff;
+      border-radius: 14px;
+    }
+    .media img, .mermaid-box {
+      border-color: var(--line);
+      background: #fff;
+      border-radius: 14px;
+    }
+    pre {
+      color: #374151;
+      background: #f7f7f8;
+      border-color: var(--line);
+      border-radius: 12px;
+    }
+    .composer-wrap {
+      background: linear-gradient(180deg, rgba(251,250,249,0), rgba(251,250,249,.88) 26%, #fbfaf9);
+    }
+    .composer {
+      width: min(760px, 100%);
+    }
+    .composer-box {
+      grid-template-columns: minmax(0, 1fr) 44px;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 8px 8px 16px;
+      border-color: var(--line);
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(15,23,42,.06), 0 14px 34px rgba(15,23,42,.09);
+    }
+    .composer-box:hover {
+      border-color: #ddd6fe;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(15,23,42,.08), 0 16px 38px rgba(108,75,244,.11);
+    }
+    .composer-box:focus-within {
+      border-color: rgba(108,75,244,.38);
+      box-shadow: 0 0 0 4px rgba(108,75,244,.1), 0 16px 38px rgba(15,23,42,.09);
+    }
+    textarea {
+      color: var(--text);
+      min-height: 44px;
+      padding: 8px 4px;
+    }
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+    #askBtn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+      box-shadow: 0 10px 20px rgba(108,75,244,.2);
+    }
+    .error {
+      color: #b91c1c;
+    }
+    @media (max-width: 960px) {
+      .app { grid-template-columns: 1fr; }
+      .app.sidebar-collapsed { grid-template-columns: 1fr; }
+      .sidebar {
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 8px 24px rgba(15,23,42,.04);
+      }
+      .app.sidebar-collapsed .brand p,
+      .app.sidebar-collapsed .new-chat,
+      .app.sidebar-collapsed .side-block,
+      .app.sidebar-collapsed .side-actions {
+        display: grid;
+      }
+      .app.sidebar-collapsed .brand h1 {
+        font-size: 18px;
+      }
+      .app.sidebar-collapsed .brand h1::before {
+        display: none;
+      }
+      .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .composer-box {
+        grid-template-columns: minmax(0, 1fr) 44px;
+      }
+      .composer-box button {
+        width: 44px;
+      }
+      .welcome {
+        text-align: left;
+      }
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <section class="brand">
+        <div class="brand-row">
+          <h1>变压器检测知识库</h1>
+          <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="折叠侧边栏">‹</button>
+        </div>
+        <p>围绕内置国标和上传文档进行连续提问。</p>
+        <button class="new-chat" onclick="newChat()">＋ 新建对话</button>
+      </section>
+
+      <section class="side-block">
+        <div class="side-title">状态</div>
+        <div class="status-card">
+          <div class="status-line"><span>知识库</span><span id="kbState">检查中</span></div>
+          <div class="status-line"><span>知识块</span><span id="chunkCount">—</span></div>
+          <div class="status-line"><span>Rerank</span><span id="rerankState">—</span></div>
+        </div>
+      </section>
+
+      <section class="side-block">
+        <div class="side-title">常用问题</div>
+        <div id="examples"></div>
+      </section>
+
+      <section class="side-actions">
+        <button class="ghost" id="adminBtn" onclick="location.href='/admin'">运维控制台</button>
+        <button class="ghost" onclick="logout()">退出登录</button>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-title">
+          <span class="badge"><span class="dot"></span><span id="topState">知识库在线</span></span>
+          <h2>标准问答对话</h2>
+        </div>
+        <span class="badge" id="roleBadge">角色：—</span>
+      </header>
+
+      <section class="chat-area" id="chatArea">
+        <div class="chat-inner" id="chatHistory">
+          <div class="welcome">
+            <h2>今天要查哪条标准依据？</h2>
+            <p>可以直接询问 变压器 检测指标、密封试验、回收流程、标准条款或上传文档里的内容。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="composer-wrap">
+        <div class="composer">
+          <div class="composer-box">
+            <textarea id="question" placeholder="询问 变压器 标准、检测指标、回收流程或页码依据"></textarea>
+            <button id="askBtn" onclick="ask()" aria-label="发送问题">→</button>
+          </div>
+          <div class="composer-meta">
+            <span id="loading">等待问题输入</span>
+            <span class="error" id="error"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    function newChat() {
+      chatHistory.length = 0;  // const 数组不能重新赋值，用 length=0 清空
+      localStorage.removeItem('chat_history');
+      renderChatHistory();
+      const q = document.getElementById('question');
+      if (q) { q.value = ''; q.focus(); }
+    }
+    function toggleSidebar() {
+      document.querySelector('.app')?.classList.toggle('sidebar-collapsed');
+    }
+    const API_BASE = localStorage.getItem('api_base') || location.origin;
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role') || 'user';
+    const examples = [
+      '变压器 气体现场循环再利用前需要满足哪些条件？',
+      '回收气体应如何检测？',
+      '哪些情况不适合复用？',
+      '高压开关设备变压器油气体密封试验的方法是什么？'
+    ];
+    const flowSteps = [
+      ['question_input', '问题输入'],
+      ['reject_check', '拒答判断'],
+      ['dense_retrieval', 'Dense检索'],
+      ['sparse_retrieval', 'Sparse检索'],
+      ['rrf_fusion', 'RRF融合'],
+      ['rerank', 'Rerank'],
+      ['generation', '生成回答'],
+      ['citation', '引用输出']
+    ];
+    const chatHistory = [];
+    let liveFlowTimer = null;
+    let messageSeq = 0;
+
+    if (!token) goLogin('请先登录后再使用问答页面。');
+    document.getElementById('roleBadge').textContent = '角色：' + role;
+    if (role !== 'admin') document.getElementById('adminBtn').style.display = 'none';
+    if (window.mermaid) mermaid.initialize({ startOnLoad: false, theme: 'default' });
+
+    document.getElementById('examples').innerHTML = examples.map((q, idx) =>
+      `<button class="starter" type="button" data-example="${idx}">${escapeHtml(q)}</button>`
+    ).join('');
+    document.querySelectorAll('[data-example]').forEach(btn => {
+      btn.addEventListener('click', () => fillAndAsk(examples[Number(btn.dataset.example)]));
+    });
+
+    loadHealth();
+
+    function escapeHtml(text) {
+      return String(text ?? '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+
+    function renderContent(text) {
+      if (!text) return '';
+      const parts = String(text).split(/(\$\$[\s\S]*?\$\$|\$[^$\n]*?\$)/g);
+      return parts.map(part => {
+        if (part.startsWith('$$') && part.endsWith('$$') && part.length > 4 && window.katex) {
+          try { return katex.renderToString(part.slice(2, -2), { displayMode: true, throwOnError: false }); }
+          catch (e) { return escapeHtml(part); }
+        }
+        if (part.startsWith('$') && part.endsWith('$') && part.length > 2 && window.katex) {
+          try { return katex.renderToString(part.slice(1, -1), { throwOnError: false }); }
+          catch (e) { return escapeHtml(part); }
+        }
+        return escapeHtml(part);
+      }).join('');
+    }
+
+    function scoreNumber(value) {
+      if (value === null || value === undefined || value === '') return null;
+      const n = Number(value);
+      return Number.isFinite(n) ? n : null;
+    }
+
+    function scoreText(value) {
+      const n = scoreNumber(value);
+      return n === null ? '—' : n.toFixed(4);
+    }
+
+    function scoreWidth(value) {
+      const n = scoreNumber(value);
+      if (n === null) return 8;
+      return Math.max(8, Math.min(100, n <= 1 ? n * 100 : n * 1000));
+    }
+
+    function getEvidenceHits(trace) {
+      if (trace && Array.isArray(trace.context_blocks) && trace.context_blocks.length) {
+        return trace.context_blocks;
+      }
+      if (trace && Array.isArray(trace.reranked_order) && trace.reranked_order.length) {
+        return trace.reranked_order;
+      }
+      if (trace && Array.isArray(trace.rough_top15) && trace.rough_top15.length) {
+        return trace.rough_top15;
+      }
+      return (trace && trace.rough_top5) || [];
+    }
+
+    function formatContextStats(stats) {
+      if (!stats || typeof stats !== 'object' || stats.after == null) return '—';
+      const parts = [
+        `前 ${stats.before ?? 0} → 后 ${stats.after ?? 0}`,
+        `过滤 ${stats.filtered ?? 0}`,
+        `去重 ${stats.deduped ?? 0}`,
+        `裁剪 ${stats.trimmed ?? 0}`,
+        `总 tokens ${stats.tokens ?? 0}`,
+      ];
+      return parts.join(' · ');
+    }
+
+    function evidenceScoreLabel(hit, preferRrf = false) {
+      if (preferRrf) return 'RRF分 ' + scoreText(hit.score);
+      if (hit.rerank_score !== null && hit.rerank_score !== undefined) {
+        return '原始分 ' + scoreText(hit.rerank_score);
+      }
+      return 'RRF分 ' + scoreText(hit.score);
+    }
+
+    function renderRerankDebugHTML(trace) {
+      const hits = (trace && trace.reranked_order && trace.reranked_order.length) ? trace.reranked_order : [];
+      if (!hits.length) return '';
+      return `<details class="prompt-trace">
+        <summary>Rerank 原始分（debug）</summary>
+        <div class="evidence-list" style="margin-top:10px;">
+          ${hits.slice(0, 5).map((hit, idx) => {
+            const raw = hit.rerank_score !== null && hit.rerank_score !== undefined ? hit.rerank_score : hit.score;
+            return `<article class="evidence">
+              <div class="evidence-top">
+                <div class="evidence-title">#${idx + 1} 原始重排候选</div>
+                <div class="score">Rerank ${scoreText(raw)}${hit.rrf_score !== null && hit.rrf_score !== undefined ? ' · RRF ' + scoreText(hit.rrf_score) : ''}</div>
+              </div>
+              <div class="evidence-meta">
+                ${escapeHtml(hit.document_kind || '标准文档')} · ${escapeHtml(hit.source || hit.document_id || '标准文档')}<br>
+                引用页码 p${escapeHtml(hit.page || '—')} · ${escapeHtml(hit.section || '章节未提供')} · ${escapeHtml(hit.semantic_type || '类型未提供')}
+              </div>
+            </article>`;
+          }).join('')}
+        </div>
+      </details>`;
+    }
+
+    function authHeaders() {
+      return { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    }
+
+    function goLogin(message) {
+      if (message) sessionStorage.setItem('login_notice', message);
+      location.href = '/login';
+    }
+
+    function logout(message = '登录状态已失效，请重新登录。后端服务重启后，演示 token 会自动失效。') {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      goLogin(message);
+    }
+
+    async function readErrorDetail(resp) {
+      let detail = '请求失败 ' + resp.status;
+      try {
+        const data = await resp.json();
+        detail = data.detail || data.message || detail;
+      } catch (e) {}
+      return detail;
+    }
+
+    function requestErrorMessage(error) {
+      if (error && error.name === 'TypeError') {
+        return '无法连接后端服务，请确认本地服务已启动；如果刚重启过服务，请重新登录。';
+      }
+      return (error && error.message) ? error.message : '请求失败，请稍后重试。';
+    }
+
+    function fillAndAsk(question) {
+      document.getElementById('question').value = question;
+      ask();
+    }
+
+    async function loadHealth() {
+      if (role !== 'admin') {
+        document.getElementById('kbState').textContent = '在线';
+        document.getElementById('topState').textContent = '知识库在线';
+        document.getElementById('rerankState').textContent = '—';
+        return;
+      }
+      try {
+        const resp = await fetch(API_BASE + '/admin/health', { headers: authHeaders() });
+        if (!resp.ok) return;
+        const data = await resp.json();
+        const online = data.qdrant_status === 'connected';
+        document.getElementById('kbState').textContent = online ? '在线' : '异常';
+        document.getElementById('topState').textContent = online ? '知识库在线' : '向量库连接异常';
+        document.getElementById('chunkCount').textContent = data.chunk_count || '—';
+        document.getElementById('rerankState').textContent = data.reranker_enabled ? '已启用' : '未启用';
+      } catch (e) {
+        document.getElementById('kbState').textContent = '异常';
+        document.getElementById('topState').textContent = '向量库连接异常';
+      }
+    }
+
+    function renderRefusal() {
+      return `<div class="refuse-title">知识库依据不足</div>
+        <div>当前知识库未找到足够标准依据，系统已停止生成无依据答案。</div>
+        <div class="suggestions">建议改问标准编号、检测指标、回收流程或页码类问题。例如：<br>
+        GB/T 44653-2024 中 变压器 气体回收率要求是多少？<br>
+        变压器 现场检测有哪些指标？<br>
+        变压器 循环再利用的流程步骤是什么？</div>`;
+    }
+
+    function formatMs(ms) {
+      const n = Number(ms || 0);
+      return n >= 1000 ? (n / 1000).toFixed(2) + 's' : n + 'ms';
+    }
+
+    function renderTimelineHTML(trace) {
+      const steps = (trace && trace.steps) || [];
+      if (!steps.length) return '';
+      return `<div class="timeline">${steps.map(step => `
+        <div class="step ${escapeHtml(step.state)}" data-step-name="${escapeHtml(step.name || '')}">
+          <div class="step-head"><span class="dot"></span><span>${escapeHtml(step.label)}</span></div>
+          <div class="step-time">${step.display_time ? escapeHtml(step.display_time) : step.state === 'pending' ? '等待中' : step.state === 'running' ? '进行中' : step.state === 'skipped' ? '已跳过' : formatMs(step.elapsed_ms)}</div>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    function buildLiveTrace(startedAt) {
+      const elapsed = Date.now() - startedAt;
+      return {
+        live: true,
+        elapsed_ms: elapsed,
+        steps: flowSteps.map(([name, label], index) => {
+          if (index === 0) {
+            return { name, label, state: 'done', elapsed_ms: 1, display_time: '1ms' };
+          }
+          if (index === 1) {
+            return {
+              name,
+              label,
+              state: 'running',
+              elapsed_ms: elapsed,
+              display_time: '等待后端结果 ' + formatMs(elapsed),
+            };
+          }
+          return {
+            name,
+            label,
+            state: 'pending',
+            elapsed_ms: 0,
+            display_time: '等待真实耗时',
+          };
+        }),
+      };
+    }
+
+    function renderLiveFlowHTML(message) {
+      const trace = message.trace || buildLiveTrace(message.startedAt);
+      return `<div class="live-flow-panel" data-live-id="${escapeHtml(message.liveId || '')}">
+        <div class="live-flow-head">
+          <span>检索流程</span>
+          <span data-live-elapsed>请求已用 ${formatMs(trace.elapsed_ms || 0)}</span>
+        </div>
+        ${renderTimelineHTML(trace)}
+      </div>`;
+    }
+
+    function renderInspectionHTML(question, data) {
+      const trace = data.trace || {};
+      const hits = getEvidenceHits(trace);
+      const llm = trace.llm || {};
+      const model = llm.model || trace.llm_model || '—';
+      const genElapsed = llm.gen_elapsed_s ?? trace.gen_elapsed_s;
+      const total = trace.total_elapsed_ms ? formatMs(trace.total_elapsed_ms) : '—';
+      const rewrittenQuery = trace.rewritten_query && trace.rewritten_query !== question ? trace.rewritten_query : '';
+      const contextStats = formatContextStats(trace.context_stats);
+      const metadata = hits.length ? hits.slice(0, 5).map((hit, idx) => {
+        const preferRrf = Array.isArray(trace.context_blocks) && trace.context_blocks.length > 0;
+        return `<div class="inspect-hit">
+          #${idx + 1} ${escapeHtml(hit.document_kind || '标准文档')} · ${escapeHtml(hit.source || hit.document_id || '未提供文档')}<br>
+          页码 p${escapeHtml(hit.page || '—')} · ${escapeHtml(hit.section || '章节未提供')} · ${evidenceScoreLabel(hit, preferRrf)}
+        </div>`;
+      }).join('') : '<div class="empty">暂无数据</div>';
+      const promptText = data.refused ? '拒答路径未保存 Prompt' : (trace.prompt || 'Prompt 未返回');
+      return `<div class="inspect">
+        <div class="inspect-head"><span class="inspect-title">检查结果</span><span class="inspect-total">总时间 ${total}</span></div>
+        <div class="inspect-row"><div class="inspect-label">Query</div><div class="inspect-value">${escapeHtml(question || '—')}</div></div>
+        ${rewrittenQuery ? `<div class="inspect-row"><div class="inspect-label">检索 Query</div><div class="inspect-value">${escapeHtml(rewrittenQuery)}</div></div>` : ''}
+        <div class="inspect-row"><div class="inspect-label">LLM</div><div class="inspect-value">${escapeHtml(model)} · 生成耗时 ${genElapsed === undefined || genElapsed === null ? '—' : genElapsed + 's'}</div></div>
+        <div class="inspect-row"><div class="inspect-label">上下文组织</div><div class="inspect-value">${escapeHtml(contextStats)}</div></div>
+        <div class="inspect-row"><div class="inspect-label">Metadata</div><div class="inspect-metadata">${metadata}</div></div>
+        <details class="prompt-trace"><summary>Prompt</summary><pre>${escapeHtml(promptText)}</pre></details>
+        ${renderRerankDebugHTML(trace)}
+      </div>`;
+    }
+
+    function renderEvidenceHTML(trace) {
+      const hits = getEvidenceHits(trace);
+      const preferRrf = Array.isArray(trace && trace.context_blocks) && trace.context_blocks.length > 0;
+      if (!hits.length) return '<div class="empty">暂无数据</div>';
+      return `<div class="evidence-list">${hits.map((hit, idx) => {
+        const raw = preferRrf ? hit.score : (hit.rerank_score ?? hit.score);
+        return `<article class="evidence">
+          <div class="evidence-top">
+            <div class="evidence-title">#${idx + 1} 已命中标准片段</div>
+            <div class="score">${evidenceScoreLabel(hit, preferRrf)}</div>
+          </div>
+          <div class="evidence-meta">
+            ${escapeHtml(hit.document_kind || '标准文档')} · ${escapeHtml(hit.source || hit.document_id || '标准文档')}<br>
+            引用页码 p${escapeHtml(hit.page || '—')} · ${escapeHtml(hit.section || '章节未提供')} · ${escapeHtml(hit.semantic_type || '类型未提供')}
+          </div>
+          <div class="evidence-content">${renderContent(hit.content || '片段摘要未提供')}</div>
+          <div class="bar"><span style="width:${scoreWidth(raw)}%"></span></div>
+        </article>`;
+      }).join('')}</div>`;
+    }
+
+    function renderMediaHTML(data) {
+      const images = (data.images || []).map(src => `<img src="${escapeHtml(src)}" alt="命中原图">`).join('');
+      const mermaids = (data.mermaid || []).map((m, idx) =>
+        `<div class="mermaid-box"><div class="mermaid" id="mermaid_${Date.now()}_${idx}">${escapeHtml(m)}</div></div>`
+      ).join('');
+      if (!images && !mermaids) return '';
+      return `<div class="media">${images}${mermaids}</div>`;
+    }
+
+    function renderAssistantDetails(message) {
+      if (message.loading) return renderLiveFlowHTML(message);
+      if (!message.trace) return '';
+      return `<details class="evidence-toggle">
+        <summary>查看证据详情</summary>
+        <div class="evidence-body">
+          ${renderInspectionHTML(message.question, message.data)}
+          ${renderTimelineHTML(message.trace)}
+          ${renderEvidenceHTML(message.trace)}
+          ${renderMediaHTML(message.data)}
+        </div>
+      </details>`;
+    }
+
+    function renderChatHistory() {
+      const box = document.getElementById('chatHistory');
+      if (!chatHistory.length) {
+        box.innerHTML = `<div class="welcome">
+          <h2>今天要查哪条标准依据？</h2>
+          <p>可以直接询问 变压器 检测指标、密封试验、回收流程、标准条款或上传文档里的内容。</p>
+        </div>`;
+        return;
+      }
+      box.innerHTML = chatHistory.map(message => {
+        if (message.role === 'user') {
+          return `<article class="message user">
+            <div class="bubble-wrap"><div class="bubble">${escapeHtml(message.content)}</div></div>
+            <div class="avatar">我</div>
+          </article>`;
+        }
+        const citations = message.citations && message.citations.length
+          ? `<div class="citations">${message.citations.map(c => `<span class="badge citation">引用页码 ${escapeHtml(c)}</span>`).join('')}</div>`
+          : '';
+        const bubbleClass = message.loading ? ' loading' : (message.refused || message.error) ? ' refused' : '';
+        const bubbleContent = message.loading
+          ? '<span class="typing-line">正在检索知识库<span class="typing-dots"><span></span><span></span><span></span></span></span>'
+          : message.error ? renderContent(message.content) : message.refused ? renderRefusal() : renderContent(message.content);
+        return `<article class="message assistant">
+          <div class="avatar">AI</div>
+          <div class="bubble-wrap">
+            <div class="bubble${bubbleClass}">${bubbleContent}${message.loading ? '' : citations}</div>
+            ${renderAssistantDetails(message)}
+          </div>
+        </article>`;
+      }).join('');
+      runMermaid(box);
+      document.getElementById('chatArea').scrollTop = document.getElementById('chatArea').scrollHeight;
+    }
+
+    function runMermaid(root) {
+      if (!window.mermaid) return;
+      const nodes = root.querySelectorAll('.mermaid');
+      if (!nodes.length) return;
+      mermaid.run({ nodes }).catch(() => {
+        nodes.forEach(node => {
+          const box = node.closest('.mermaid-box');
+          if (box) box.innerHTML = `<pre>${escapeHtml(node.textContent || '')}</pre>`;
+        });
+      });
+    }
+
+    function showError(message) {
+      const error = document.getElementById('error');
+      error.textContent = message;
+      error.style.display = 'inline';
+    }
+
+    function clearError() {
+      const error = document.getElementById('error');
+      error.textContent = '';
+      error.style.display = 'none';
+    }
+
+    function startLiveFlow(message) {
+      stopLiveFlow();
+      message.trace = buildLiveTrace(message.startedAt);
+      liveFlowTimer = setInterval(() => {
+        if (!message.loading) {
+          stopLiveFlow();
+          return;
+        }
+        message.trace = buildLiveTrace(message.startedAt);
+        updateLiveFlow(message);
+      }, 500);
+    }
+
+    function updateLiveFlow(message) {
+      const panel = document.querySelector(`[data-live-id="${message.liveId}"]`);
+      if (!panel) {
+        renderChatHistory();
+        return;
+      }
+      const trace = message.trace || buildLiveTrace(message.startedAt);
+      const elapsed = panel.querySelector('[data-live-elapsed]');
+      if (elapsed) elapsed.textContent = '请求已用 ' + formatMs(trace.elapsed_ms || 0);
+      (trace.steps || []).forEach(step => {
+        const stepEl = panel.querySelector(`[data-step-name="${step.name}"]`);
+        if (!stepEl) return;
+        stepEl.className = 'step ' + (step.state || 'pending');
+        const timeEl = stepEl.querySelector('.step-time');
+        if (timeEl) {
+          timeEl.textContent = step.display_time || (step.state === 'pending' ? '等待中' : step.state === 'running' ? '进行中' : step.state === 'skipped' ? '已跳过' : formatMs(step.elapsed_ms));
+        }
+      });
+    }
+
+    function stopLiveFlow() {
+      if (liveFlowTimer) {
+        clearInterval(liveFlowTimer);
+        liveFlowTimer = null;
+      }
+    }
+
+    async function ask() {
+      const input = document.getElementById('question');
+      const question = input.value.trim();
+      if (!question) return;
+      const btn = document.getElementById('askBtn');
+      const loading = document.getElementById('loading');
+      if (btn.disabled) return;
+
+      chatHistory.push({ role: 'user', content: question });
+      const pendingMessage = {
+        role: 'assistant',
+        content: '',
+        refused: false,
+        citations: [],
+        question,
+        data: { trace: buildLiveTrace(Date.now()) },
+        trace: null,
+        loading: true,
+        startedAt: Date.now(),
+        liveId: 'live_' + (++messageSeq),
+      };
+      chatHistory.push(pendingMessage);
+      input.value = '';
+      input.style.height = '52px';
+      renderChatHistory();
+      startLiveFlow(pendingMessage);
+      btn.disabled = true;
+      loading.textContent = '检索中…';
+      clearError();
+
+      try {
+        const resp = await fetch(API_BASE + '/ask', {
+          method: 'POST',
+          headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question })
+        });
+        if (resp.status === 401) { logout(); return; }
+        if (!resp.ok) throw new Error(await readErrorDetail(resp));
+        const data = await resp.json();
+        stopLiveFlow();
+        Object.assign(pendingMessage, {
+          content: data.answer || '',
+          refused: data.refused,
+          citations: data.citations || [],
+          data,
+          trace: data.trace || null,
+          loading: false,
+        });
+        renderChatHistory();
+        loading.textContent = data.refused ? '标准依据不足' : '检索链路完成';
+      } catch (e) {
+        const message = requestErrorMessage(e);
+        stopLiveFlow();
+        Object.assign(pendingMessage, {
+          content: message,
+          refused: true,
+          error: true,
+          citations: [],
+          data: { refused: true, trace: null },
+          trace: null,
+          loading: false,
+        });
+        renderChatHistory();
+        showError(message);
+        loading.textContent = '请求失败';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    const questionInput = document.getElementById('question');
+    questionInput.addEventListener('input', () => {
+      questionInput.style.height = '52px';
+      questionInput.style.height = Math.min(questionInput.scrollHeight, 180) + 'px';
+    });
+    questionInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        ask();
+      }
+    });
+  </script>
+</body>
+</html>

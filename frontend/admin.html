@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识库运维控制台 · 变压器 RAG</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --bg-2: #0b1220;
+      --panel: rgba(18,31,50,.92);
+      --line: rgba(56,189,248,.16);
+      --line-strong: rgba(56,189,248,.34);
+      --text: #e5edf7;
+      --muted: #8ba0bd;
+      --accent: #38bdf8;
+      --cyan: #22d3ee;
+      --ok: #34d399;
+      --warn: #f59e0b;
+      --bad: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(56,189,248,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,.035) 1px, transparent 1px),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #101827);
+      background-size: 42px 42px, 42px 42px, auto;
+    }
+    button, input, select, textarea { font: inherit; }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #03111c;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(34,211,238,.16);
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease, color .16s ease, opacity .16s ease;
+    }
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(34,211,238,.24);
+      filter: saturate(1.08);
+    }
+    button:active:not(:disabled) {
+      transform: translateY(1px) scale(.99);
+      box-shadow: 0 6px 16px rgba(34,211,238,.16);
+    }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid rgba(56,189,248,.72);
+      outline-offset: 3px;
+    }
+    button:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
+    .ghost {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      box-shadow: none;
+    }
+    .ghost:hover:not(:disabled) {
+      color: #e9f7ff;
+      border-color: rgba(56,189,248,.58);
+      background: rgba(56,189,248,.1);
+      box-shadow: 0 10px 24px rgba(56,189,248,.12);
+    }
+    .danger {
+      color: #fee2e2;
+      background: rgba(127,29,29,.32);
+      border: 1px solid rgba(248,113,113,.3);
+      box-shadow: none;
+    }
+    .danger:hover:not(:disabled) {
+      border-color: rgba(248,113,113,.55);
+      background: rgba(127,29,29,.46);
+      box-shadow: 0 10px 24px rgba(248,113,113,.12);
+    }
+    .shell { width: min(1320px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 28px; }
+    .topbar, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .topbar:hover, .card:hover {
+      border-color: rgba(56,189,248,.3);
+      box-shadow: 0 18px 46px rgba(0,0,0,.28), 0 0 0 1px rgba(56,189,248,.04);
+    }
+    .card:hover {
+      transform: translateY(-1px);
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 24px; margin-bottom: 6px; }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 0; }
+    .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,.7);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: border-color .18s ease, background .18s ease, color .18s ease;
+    }
+    .badge:hover {
+      border-color: rgba(56,189,248,.3);
+      background: rgba(15,23,42,.88);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 99px; background: var(--ok); }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .tab {
+      color: var(--muted);
+      background: rgba(15,23,42,.7);
+      border: 1px solid var(--line);
+      white-space: nowrap;
+      box-shadow: none;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease, color .16s ease, box-shadow .16s ease;
+    }
+    .tab.active { color: #03111c; background: linear-gradient(135deg, var(--accent), var(--cyan)); box-shadow: 0 10px 24px rgba(34,211,238,.14); }
+    .tab:hover:not(.active) {
+      color: #e5edf7;
+      border-color: rgba(56,189,248,.42);
+      background: rgba(56,189,248,.09);
+      transform: translateY(-1px);
+    }
+    .tab:active {
+      transform: translateY(1px) scale(.99);
+    }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+    .card { padding: 16px; min-width: 0; }
+    .metric-value { color: var(--accent); font-size: 28px; font-weight: 900; line-height: 1.12; word-break: break-word; overflow-wrap: anywhere; }
+    .metric-label { color: var(--muted); font-size: 12px; margin-top: 8px; }
+    .chunk-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+    .mini-metric {
+      border: 1px solid rgba(56,189,248,.15);
+      border-radius: 8px;
+      background: rgba(8,17,31,.48);
+      padding: 13px;
+      min-width: 0;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .mini-metric:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56,189,248,.38);
+      background: rgba(8,17,31,.66);
+      box-shadow: 0 12px 28px rgba(0,0,0,.16);
+    }
+    .mini-value { color: var(--accent); font-size: 24px; font-weight: 900; line-height: 1; }
+    .mini-label { color: var(--muted); font-size: 12px; margin-top: 7px; }
+    .chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .chart-panel {
+      border: 1px solid rgba(139,160,189,.14);
+      border-radius: 8px;
+      background: rgba(8,17,31,.42);
+      padding: 12px;
+      min-width: 0;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .chart-panel:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56,189,248,.32);
+      background: rgba(8,17,31,.6);
+      box-shadow: 0 12px 28px rgba(0,0,0,.14);
+    }
+    .chart-title { color: #dce8f7; font-size: 13px; font-weight: 800; margin-bottom: 8px; }
+    .chart { width: 100%; height: 260px; }
+    .filter-row { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(160px, 220px) auto; gap: 10px; align-items: center; margin: 12px 0 14px; }
+    .vector-layout { display: grid; gap: 16px; }
+    .vector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .vector-card {
+      min-width: 0;
+      border: 1px solid rgba(56,189,248,.2);
+      border-radius: 8px;
+      background: rgba(8,17,31,.56);
+      padding: 14px;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .vector-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56,189,248,.45);
+      background: rgba(8,17,31,.74);
+      box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    }
+    .vector-card:focus-visible {
+      outline: 2px solid rgba(56,189,248,.72);
+      outline-offset: 3px;
+    }
+    .vector-card.active {
+      border-color: rgba(52,211,153,.58);
+      background: rgba(6,45,38,.38);
+      box-shadow: inset 0 0 0 1px rgba(52,211,153,.12), 0 14px 30px rgba(0,0,0,.16);
+    }
+    .vector-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .vector-count {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .vector-kind {
+      flex: 0 0 auto;
+      color: #baf7df;
+      border: 1px solid rgba(52,211,153,.28);
+      background: rgba(20,83,45,.25);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .vector-name {
+      margin-top: 12px;
+      color: #e5edf7;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.45;
+      word-break: break-all;
+      overflow-wrap: anywhere;
+    }
+    .vector-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+    .vector-meta span {
+      min-width: 0;
+      color: var(--muted);
+      border: 1px solid rgba(139,160,189,.16);
+      background: rgba(15,23,42,.62);
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .vector-detail-wrap { overflow-x: auto; margin-top: 12px; }
+    .vector-detail-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .vector-detail-name {
+      max-width: 100%;
+      color: #e5edf7;
+      font-size: 15px;
+      font-weight: 900;
+      word-break: break-all;
+      overflow-wrap: anywhere;
+    }
+    .chunk-list-wrap { overflow-x: auto; }
+    .chunk-content { max-width: 520px; color: #cbd8ea; line-height: 1.55; }
+    .chunk-detail {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid rgba(56,189,248,.18);
+      border-radius: 8px;
+      background: rgba(8,17,31,.56);
+      padding: 12px;
+    }
+    .chunk-detail h3 { margin: 0 0 8px; font-size: 14px; }
+    .view { display: none; }
+    .view.active { display: block; animation: panelIn .2s ease both; }
+    .section-grid { display: grid; grid-template-columns: 390px minmax(0,1fr); gap: 16px; }
+    .form-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 12px 0; }
+.form-row input[type="file"] { flex: 1 1 200px; }
+.form-row select { flex: 0 0 auto; min-width: 160px; }
+    input, select, textarea {
+      width: 100%;
+      color: var(--text);
+      background: rgba(8,17,31,.74);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: 11px 12px;
+      transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+    input:hover, select:hover, textarea:hover {
+      border-color: rgba(56,189,248,.52);
+      background: rgba(8,17,31,.88);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(52,211,153,.72);
+      box-shadow: 0 0 0 4px rgba(52,211,153,.1);
+      background: rgba(8,17,31,.96);
+    }
+    input[type="file"] { color: var(--muted); }
+    .pipeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stage { background: rgba(18,31,50,.7); border: 1px solid rgba(56,189,248,.14); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.stage.done { border-color: rgba(52,211,153,.45); }
+.stage.running { border-color: rgba(56,189,248,.55); box-shadow: 0 0 14px rgba(56,189,248,.12); }
+.stage.running .progress span {
+  width: 100%;
+  background: linear-gradient(90deg, #38bdf8, #22d3ee, #38bdf8, #22d3ee);
+  background-size: 200% 100%;
+  animation: stageFlow 1.1s linear infinite;
+}
+@keyframes stageFlow { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
+.stage.failed { border-color: rgba(248,113,113,.55); }
+.stage.skipped { opacity: .5; }
+.stage-title { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--text, #e5edf7); }
+.stage .dot { width: 8px; height: 8px; border-radius: 99px; background: #3a4a63; }
+.stage.running .dot { background: #38bdf8; animation: stagePulse 1.2s infinite; }
+.stage.done .dot { background: #34d399; }
+.stage.failed .dot { background: #f87171; }
+@keyframes stagePulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+.stage-stats { color: #8ba0bd; font-size: 11px; margin: 6px 0; line-height: 1.5; min-height: 15px; }
+.progress { height: 4px; background: rgba(139,160,189,.18); border-radius: 99px; overflow: hidden; }
+.progress span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #38bdf8, #22d3ee); transition: width .5s; }
+    .stage {
+      border: 1px solid rgba(139,160,189,.16);
+      background: rgba(8,17,31,.56);
+      border-radius: 8px;
+      padding: 12px;
+      min-height: 132px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+    .stage.running { border-color: rgba(56,189,248,.5); }
+    .stage.done { border-color: rgba(52,211,153,.42); }
+    .stage.failed { border-color: rgba(248,113,113,.55); }
+    .stage:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56,189,248,.36);
+      background: rgba(8,17,31,.72);
+      box-shadow: 0 12px 28px rgba(0,0,0,.16);
+    }
+    .stage-title { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; }
+    .stage-stats { color: var(--muted); font-size: 12px; line-height: 1.55; margin-top: 10px; word-break: break-word; }
+    .progress { height: 7px; background: rgba(139,160,189,.18); border-radius: 99px; overflow: hidden; margin-top: 12px; }
+    .progress span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--accent), var(--ok)); transition: width .45s ease; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { border-bottom: 1px solid rgba(139,160,189,.14); padding: 11px 8px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 700; }
+    td { color: #d5e0ee; }
+    tbody tr {
+      transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
+    }
+    tbody tr:hover {
+      background: rgba(56,189,248,.06);
+      box-shadow: inset 3px 0 0 rgba(56,189,248,.48);
+    }
+    .empty, .error {
+      border: 1px dashed rgba(139,160,189,.28);
+      border-radius: 8px;
+      padding: 18px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .error { display: none; color: #fecaca; border-color: rgba(248,113,113,.35); background: rgba(127,29,29,.22); }
+    .result-list { display: grid; gap: 10px; }
+    .hit {
+      border: 1px solid rgba(56,189,248,.16);
+      border-radius: 8px;
+      background: rgba(8,17,31,.58);
+      padding: 12px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .hit:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56,189,248,.34);
+      background: rgba(8,17,31,.74);
+      box-shadow: 0 12px 28px rgba(0,0,0,.14);
+    }
+    .hit-head { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 800; }
+    .hit-body { color: #cbd8ea; font-size: 13px; line-height: 1.6; margin-top: 8px; }
+    .bar { height: 8px; background: rgba(139,160,189,.18); border-radius: 99px; overflow: hidden; margin-top: 10px; }
+    .bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--ok)); }
+    .muted { color: var(--muted); }
+    @media (max-width: 1120px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .chunk-metrics, .chart-grid { grid-template-columns: 1fr; }
+      .filter-row { grid-template-columns: 1fr; }
+      .section-grid { grid-template-columns: 1fr; }
+      .pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 20px, 1320px); padding-top: 10px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .grid, .pipeline { grid-template-columns: 1fr; }
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { display: none; }
+      tr { border: 1px solid rgba(139,160,189,.16); border-radius: 8px; margin-bottom: 10px; padding: 8px; }
+      td { border: 0; padding: 6px 4px; }
+      td::before { content: attr(data-label) "："; color: var(--muted); }
+    }
+  
+    /* ===== 左侧菜单导航（RAG Build Studio 风格） ===== */
+    .app-layout { display: flex; gap: 18px; align-items: flex-start; }
+    .side-nav { width: 232px; flex-shrink: 0; position: sticky; top: 16px;
+      background: rgba(10,20,35,.94); border: 1px solid rgba(56,189,248,.14);
+      border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 14px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.25);
+      transition: border-color .18s ease, box-shadow .18s ease; }
+    .side-nav:hover { border-color: rgba(56,189,248,.28); box-shadow: 0 14px 34px rgba(0,0,0,.28); }
+    .side-brand { display: flex; align-items: center; gap: 10px; padding: 4px 4px 12px;
+      border-bottom: 1px solid rgba(139,160,189,.12); }
+    .side-logo { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; box-shadow: 0 4px 14px rgba(56,189,248,.35); }
+    .side-title { font-size: 15px; font-weight: 800; color: #e5edf7; letter-spacing: .3px; }
+    .side-sub { font-size: 11px; color: #8ba0bd; margin-top: 2px; }
+    .side-menu { display: grid; gap: 4px; }
+    .side-menu .tab { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+      padding: 10px 12px; border: 0; border-left: 3px solid transparent; border-radius: 8px;
+      background: transparent; color: #8ba0bd; font-size: 14px; cursor: pointer; box-shadow: none; transition: transform .16s ease, background .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease; }
+    .side-menu .tab:hover { background: rgba(56,189,248,.08); color: #e5edf7; transform: translateX(3px); }
+    .side-menu .tab:active { transform: translateX(1px) scale(.99); }
+    .side-menu .tab.active { background: rgba(56,189,248,.14); border-left-color: #38bdf8;
+      color: #38bdf8; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(56,189,248,.08); }
+    .menu-ico { font-size: 16px; width: 22px; text-align: center; }
+    .side-footer { margin-top: auto; display: grid; gap: 6px; padding-top: 12px;
+      border-top: 1px solid rgba(139,160,189,.12); }
+    .side-footer .ghost { justify-content: center; }
+    .main-panel { flex: 1; min-width: 0; }
+    .panel-top { display: flex; justify-content: space-between; align-items: center; gap: 14px;
+      flex-wrap: wrap; margin-bottom: 14px; }
+    @media (max-width: 980px) {
+      .app-layout { flex-direction: column; }
+      .side-nav { width: 100%; position: static; }
+      .side-menu { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+      .side-footer { flex-direction: row; }
+    }
+
+  
+    /* ===== 拖拽上传区 ===== */
+    .drop-zone { border: 2px dashed rgba(56,189,248,.3); border-radius: 12px;
+      padding: 26px 16px; text-align: center; cursor: pointer; transition: all .2s;
+      background: rgba(56,189,248,.04); }
+    .drop-zone:hover { border-color: rgba(56,189,248,.6); background: rgba(56,189,248,.08); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(56,189,248,.1); }
+    .drop-zone:active { transform: translateY(1px) scale(.995); }
+    .drop-zone.dragging { border-color: #38bdf8; background: rgba(56,189,248,.15); transform: scale(1.01); }
+    .drop-hint { color: #8ba0bd; font-size: 14px; }
+    .drop-file { color: #38bdf8; font-size: 14px; font-weight: 700; }
+
+  
+    /* ===== 块详情弹窗 ===== */
+    .chunk-modal-mask { display: none; position: fixed; inset: 0; background: rgba(2,8,18,.72);
+      z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+    .chunk-modal-mask.show { display: flex; }
+    .chunk-modal-box { width: min(760px, calc(100% - 40px)); max-height: 82vh;
+      background: #0b1a2e; border: 1px solid rgba(56,189,248,.28); border-radius: 14px;
+      padding: 18px 20px; box-shadow: 0 24px 60px rgba(0,0,0,.5); display: flex; flex-direction: column; }
+    .chunk-modal-mask.show .chunk-modal-box { animation: modalIn .18s ease both; }
+    .chunk-modal-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .chunk-modal-title { font-size: 15px; font-weight: 900; color: #e5edf7; }
+    .chunk-modal-close { background: transparent; border: 1px solid rgba(139,160,189,.3); color: #8ba0bd;
+      border-radius: 8px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
+    .chunk-modal-close:hover { color: #f87171; border-color: rgba(248,113,113,.5); background: rgba(127,29,29,.22); box-shadow: none; }
+    .chunk-modal-body { overflow-y: auto; color: #cbd8ea; font-size: 13px; line-height: 1.7; min-height: 60px; }
+    .chunk-detail-loading, .chunk-detail-error {
+      border: 1px dashed rgba(139,160,189,.28);
+      border-radius: 8px;
+      padding: 18px;
+      color: var(--muted);
+      background: rgba(8,17,31,.5);
+    }
+    .chunk-detail-error {
+      color: #fecaca;
+      border-color: rgba(248,113,113,.38);
+      background: rgba(127,29,29,.2);
+    }
+    .chunk-modal-body pre { white-space: pre-wrap; word-break: break-word; background: rgba(8,17,31,.7);
+      border: 1px solid rgba(56,189,248,.12); border-radius: 8px; padding: 12px; margin-top: 10px;
+      max-height: 52vh; overflow-y: auto; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(10px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ===== Kimi light theme override ===== */
+    :root {
+      --bg: #fbfaf9;
+      --bg-2: #f6f1ff;
+      --panel: #ffffff;
+      --line: #e8e6e3;
+      --line-strong: #ddd6fe;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --accent: #6c4bf4;
+      --cyan: #8b5cf6;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --bad: #ef4444;
+      --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.08);
+      --shadow-lg: 0 16px 36px rgba(15,23,42,.1);
+    }
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 16% 16%, rgba(108,75,244,.08), transparent 24%),
+        linear-gradient(180deg, #fbfaf9, #f8f5ff 58%, #fbfaf9);
+    }
+    button {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      box-shadow: 0 10px 24px rgba(108,75,244,.16);
+    }
+    button:hover:not(:disabled) {
+      box-shadow: 0 14px 30px rgba(108,75,244,.24);
+    }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid rgba(108,75,244,.42);
+    }
+    .ghost {
+      color: #4f46e5;
+      background: #fff;
+      border: 1px solid #ddd6fe;
+      box-shadow: none;
+    }
+    .ghost:hover:not(:disabled) {
+      color: #5b21b6;
+      border-color: rgba(108,75,244,.35);
+      background: #f5f3ff;
+      box-shadow: 0 8px 20px rgba(108,75,244,.1);
+    }
+    .danger {
+      color: #b91c1c;
+      background: #fff1f2;
+      border-color: rgba(239,68,68,.22);
+    }
+    .danger:hover:not(:disabled) {
+      color: #991b1b;
+      background: #fee2e2;
+      border-color: rgba(239,68,68,.36);
+      box-shadow: 0 8px 20px rgba(239,68,68,.1);
+    }
+    .shell {
+      width: min(1420px, calc(100% - 28px));
+      padding: 18px 0 28px;
+    }
+    .topbar, .card {
+      background: rgba(255,255,255,.92);
+      border-color: var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .topbar:hover, .card:hover {
+      border-color: rgba(108,75,244,.2);
+      background: #fff;
+      box-shadow: var(--shadow-lg);
+    }
+    .topbar h1, h2, h3 {
+      color: #111827;
+    }
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+    }
+    .topbar .actions .ghost {
+      display: none;
+    }
+    .sub, .muted, .metric-label, .mini-label, th {
+      color: var(--muted);
+    }
+    .badge {
+      color: #5b21b6;
+      background: #f0ebff;
+      border-color: #ddd6fe;
+    }
+    .badge:hover {
+      background: #ebe5ff;
+      border-color: rgba(108,75,244,.28);
+    }
+    .dot {
+      background: var(--ok);
+    }
+    .app-layout {
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .side-nav {
+      width: auto;
+      position: sticky;
+      top: 96px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+    .side-nav:hover {
+      border-color: rgba(108,75,244,.2);
+      box-shadow: var(--shadow-lg);
+    }
+    .side-brand {
+      border-bottom-color: var(--line);
+    }
+    .side-logo {
+      width: 42px;
+      height: 42px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      box-shadow: 0 10px 22px rgba(108,75,244,.18);
+    }
+    .side-title {
+      color: #111827;
+      letter-spacing: 0;
+    }
+    .side-sub {
+      color: var(--muted);
+    }
+    .tabs, .side-menu {
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+    }
+    .side-menu .tab {
+      color: #4b5563;
+      background: transparent;
+      border-left-color: transparent;
+      border-radius: 12px;
+      box-shadow: none;
+    }
+    .side-menu .tab:hover {
+      color: #5b21b6;
+      background: #f7f4ff;
+      transform: translateX(3px);
+    }
+    .side-menu .tab.active {
+      color: #5b21b6;
+      background: #f0ebff;
+      border-left-color: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(108,75,244,.08);
+    }
+    .side-footer {
+      border-top-color: var(--line);
+    }
+    .main-panel {
+      min-width: 0;
+    }
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .card {
+      padding: 18px;
+    }
+    .metric-value, .mini-value, .vector-count {
+      color: var(--accent);
+    }
+    #mCollection {
+      font-size: 22px;
+      line-height: 1.18;
+      overflow-wrap: anywhere;
+    }
+    .mini-metric, .chart-panel, .vector-card, .hit, .stage, .chunk-detail {
+      background: #fff;
+      border-color: var(--line);
+      border-radius: 14px;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04);
+    }
+    .mini-metric:hover, .chart-panel:hover, .vector-card:hover, .hit:hover, .stage:hover {
+      background: #fbfaff;
+      border-color: rgba(108,75,244,.24);
+      box-shadow: 0 10px 24px rgba(108,75,244,.08);
+    }
+    .chart-title, .vector-name, .vector-detail-name, .stage-title, .hit-head {
+      color: #111827;
+    }
+    .vector-card.active {
+      background: #f0ebff;
+      border-color: rgba(108,75,244,.36);
+      box-shadow: inset 0 0 0 1px rgba(108,75,244,.1), 0 10px 24px rgba(108,75,244,.08);
+    }
+    .vector-kind {
+      color: #166534;
+      border-color: rgba(34,197,94,.2);
+      background: #f0fdf4;
+    }
+    .vector-meta span {
+      color: #6b7280;
+      border-color: var(--line);
+      background: #f9fafb;
+    }
+    .chunk-content, .hit-body, td {
+      color: #374151;
+    }
+    input, select, textarea {
+      color: #1f2937;
+      background: #fff;
+      border-color: var(--line);
+      border-radius: 14px;
+    }
+    textarea {
+      border-radius: 18px;
+    }
+    input:hover, select:hover, textarea:hover {
+      border-color: #d8cff8;
+      background: #fbfaff;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(108,75,244,.38);
+      box-shadow: 0 0 0 4px rgba(108,75,244,.1);
+      background: #fff;
+    }
+    .filter-row {
+      grid-template-columns: minmax(220px, 1fr) minmax(180px, 220px) auto;
+    }
+    .drop-zone {
+      background: #fff;
+      border-color: #c4b5fd;
+      border-radius: 18px;
+    }
+    .drop-zone:hover, .drop-zone.dragging {
+      background: #f7f4ff;
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px rgba(108,75,244,.12);
+    }
+    .drop-hint {
+      color: #6b7280;
+    }
+    .drop-file {
+      color: #5b21b6;
+    }
+    .stage {
+      min-height: 126px;
+    }
+    .stage .dot {
+      background: #c7c2bc;
+    }
+    .stage.running {
+      background: #f7f4ff;
+      border-color: rgba(108,75,244,.36);
+      box-shadow: 0 12px 24px rgba(108,75,244,.1);
+    }
+    .stage.running .dot {
+      background: var(--accent);
+    }
+    .stage.running .progress span {
+      background: linear-gradient(90deg, var(--accent), var(--cyan), var(--accent), var(--cyan));
+    }
+    .stage.done {
+      border-color: rgba(34,197,94,.3);
+    }
+    .stage.done .dot {
+      background: var(--ok);
+    }
+    .stage.failed {
+      border-color: rgba(239,68,68,.34);
+    }
+    .stage.failed .dot {
+      background: var(--bad);
+    }
+    .stage-stats {
+      color: var(--muted);
+    }
+    .progress, .bar {
+      background: #eeece9;
+    }
+    .progress span, .bar span {
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+    }
+    table {
+      background: #fff;
+    }
+    th, td {
+      border-bottom-color: var(--line);
+    }
+    tbody tr:hover {
+      background: #f7f4ff;
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+    .empty {
+      color: var(--muted);
+      border-color: #ddd6fe;
+      background: #fbfaff;
+      border-radius: 14px;
+    }
+    .error {
+      color: #b91c1c;
+      border-color: rgba(239,68,68,.24);
+      background: #fef2f2;
+      border-radius: 14px;
+    }
+    .chunk-modal-mask {
+      background: rgba(17,24,39,.22);
+    }
+    .chunk-modal-box {
+      background: #fff;
+      border-color: var(--line);
+      border-radius: 18px;
+      box-shadow: 0 24px 60px rgba(15,23,42,.18);
+    }
+    .chunk-modal-title {
+      color: #111827;
+    }
+    .chunk-modal-close {
+      color: #4f46e5;
+      background: #fff;
+      border-color: #ddd6fe;
+    }
+    .chunk-modal-close:hover {
+      color: #991b1b;
+      border-color: rgba(239,68,68,.32);
+      background: #fef2f2;
+    }
+    .chunk-modal-body {
+      color: #374151;
+    }
+    .chunk-detail-loading, .chunk-detail-error {
+      background: #fbfaff;
+      border-color: #ddd6fe;
+      border-radius: 14px;
+    }
+    .chunk-detail-error {
+      color: #991b1b;
+      background: #fef2f2;
+      border-color: rgba(239,68,68,.24);
+    }
+    .chunk-modal-body pre {
+      color: #374151;
+      background: #f7f7f8;
+      border-color: var(--line);
+      border-radius: 14px;
+    }
+    @media (max-width: 1120px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+      .side-nav {
+        position: static;
+      }
+      .side-menu {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 20px, 1420px);
+      }
+      .topbar {
+        position: static;
+      }
+      .side-menu, .grid, .pipeline {
+        grid-template-columns: 1fr;
+      }
+      tr {
+        border-color: var(--line);
+        background: #fff;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <h1>知识库运维控制台 · 后台管理</h1>
+        <p class="sub">文档上传管线、检索测试、系统健康与问答记录</p>
+      </div>
+      <div class="actions">
+        <span class="badge"><span class="dot"></span><span id="apiState">API 健康检查中</span></span>
+        <span class="badge" id="roleBadge">admin</span>
+        <button class="ghost" onclick="location.href='/'">返回问答页</button>
+        <button class="ghost" onclick="logout()">退出登录</button>
+      </div>
+    </header>
+
+    <div class="app-layout">
+      <aside class="side-nav">
+        <div class="side-brand">
+          <div class="side-logo">变压器</div>
+          <div>
+            <div class="side-title">运维控制台</div>
+            <div class="side-sub">Kimi 风浅色面板</div>
+          </div>
+        </div>
+        <nav class="side-menu tabs">
+          <button class="tab active" data-view="upload"><span class="menu-ico">↑</span>上传构建</button>
+          <button class="tab" data-view="documents"><span class="menu-ico">▣</span>文档管理</button>
+          <button class="tab" data-view="vector"><span class="menu-ico">◫</span>向量库</button>
+          <button class="tab" data-view="retrieval"><span class="menu-ico">⌕</span>检索测试台</button>
+          <button class="tab" data-view="health"><span class="menu-ico">●</span>系统健康</button>
+          <button class="tab" data-view="eval"><span class="menu-ico">◔</span>评测趋势</button>
+        </nav>
+        <div class="side-footer">
+          <button class="ghost" onclick="location.href='/'">返回问答页</button>
+          <button class="ghost" onclick="logout()">退出登录</button>
+        </div>
+      </aside>
+
+      <section class="main-panel">
+        <section class="grid">
+          <div class="card"><div class="metric-value" id="mCollection">—</div><div class="metric-label">当前 collection</div></div>
+          <div class="card"><div class="metric-value" id="mChunks">—</div><div class="metric-label">知识块总数</div></div>
+          <div class="card"><div class="metric-value" id="mDocs">—</div><div class="metric-label">文档数量</div></div>
+          <div class="card"><div class="metric-value" id="mRerank">—</div><div class="metric-label">Rerank 状态</div></div>
+        </section>
+
+        <div class="error" id="globalError"></div>
+
+        <section class="view active" id="view-upload">
+          <div class="section-grid">
+            <div class="card">
+              <h2>上传 PDF</h2>
+              <div class="drop-zone" id="dropZone">
+                <div class="drop-hint" id="dropHint">📄 拖拽 PDF 到这里，或点击选择文件</div>
+                <div class="drop-file" id="dropFile" style="display:none"></div>
+              </div>
+              <input type="file" id="fileInput" accept=".pdf" style="display:none">
+              <div class="form-row">
+                <select id="mode">
+                  <option value="fitz">fitz 秒级解析</option>
+                  <option value="mineru">mineru-api 解析</option>
+                </select>
+                <button id="uploadBtn" onclick="uploadFile()">提交构建任务</button>
+              </div>
+              <p class="sub">新上传文档会写入独立集合 device_knowledge_upload_&lt;uuid&gt;，不会污染 device_knowledge_v8。</p>
+            </div>
+            <div class="card">
+              <h2>六步管线可视化</h2>
+              <div class="pipeline" id="pipeline"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-documents">
+      <div class="card">
+        <div class="panel-top">
+          <div>
+            <h2>分块数据看板</h2>
+            <p class="sub">来自 Qdrant 真实 payload，覆盖内置集合与上传集合。</p>
+          </div>
+          <button class="ghost" onclick="loadChunkDashboard()">刷新看板</button>
+        </div>
+        <div class="chunk-metrics">
+          <div class="mini-metric"><div class="mini-value" id="chunkTotal">—</div><div class="mini-label">知识块总数</div></div>
+          <div class="mini-metric"><div class="mini-value" id="chunkAvgToken">—</div><div class="mini-label">平均 Token</div></div>
+          <div class="mini-metric"><div class="mini-value" id="chunkFragments">—</div><div class="mini-label">碎片数</div></div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-panel">
+            <div class="chart-title">语义类型分布</div>
+            <div class="chart" id="semanticChart"><div class="empty">暂无数据</div></div>
+          </div>
+          <div class="chart-panel">
+            <div class="chart-title">Token 分布直方图</div>
+            <div class="chart" id="tokenChart"><div class="empty">暂无数据</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h2>分块列表筛选</h2>
+        <div class="filter-row">
+          <select id="chunkDocFilter"></select>
+          <select id="chunkSemanticFilter"></select>
+          <button onclick="loadChunkDashboard()">应用筛选</button>
+        </div>
+        <div class="chunk-list-wrap">
+          <table>
+            <thead><tr><th>文档</th><th>页码/章节</th><th>语义类型</th><th>Token</th><th>片段</th><th>操作</th></tr></thead>
+            <tbody id="chunkBody"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="chunkEmpty" style="display:none;">暂无数据</div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h2>文档状态管理</h2>
+        <table>
+          <thead><tr><th>文档</th><th>状态</th><th>集合</th><th>块数</th><th>解析模式</th><th>操作</th></tr></thead>
+          <tbody id="docBody"></tbody>
+        </table>
+        <div class="empty" id="docEmpty" style="display:none;">暂无文档状态</div>
+      </div>
+    </section>
+
+        <section class="view" id="view-vector">
+      <div class="vector-layout">
+        <div class="card">
+          <h2>集合概览</h2>
+          <p class="sub">Qdrant embedded · named vectors（dense 1024 + sparse）· FusionQuery RRF</p>
+          <div class="vector-grid" id="vectorCards"></div>
+          <div class="empty" id="vectorEmpty" style="display:none;">暂无向量集合</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <h2>集合详情</h2>
+        <div class="muted" id="vectorDetailHint">选择上方集合查看向量详情与 chunk 列表</div>
+        <div id="vectorDetail" style="display:none;"></div>
+      </div>
+    </section>
+
+        <section class="view" id="view-retrieval">
+      <div class="section-grid">
+        <div class="card">
+          <h2>检索测试台</h2>
+          <textarea id="retrieveQuestion" rows="5" placeholder="输入问题，只检索不生成"></textarea>
+          <div class="form-row">
+            <select id="topK">
+              <option value="3">top 3</option>
+              <option value="5" selected>top 5</option>
+              <option value="10">top 10</option>
+            </select>
+            <button onclick="runRetrieveTest()">执行检索测试</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>检索结果</h2>
+          <div class="result-list" id="retrieveResults">
+            <div class="empty">等待检索测试</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section class="view" id="view-health">
+      <div class="section-grid">
+        <div class="card">
+          <h2>系统健康</h2>
+          <div id="healthPanel" class="result-list"></div>
+        </div>
+        <div class="card">
+          <h2>最近问答记录</h2>
+          <table>
+            <thead><tr><th>问题</th><th>命中页</th><th>用户</th><th>状态</th></tr></thead>
+            <tbody id="qaBody"></tbody>
+          </table>
+          <div class="empty" id="qaEmpty" style="display:none;">暂无问答记录</div>
+        </div>
+      </div>
+    </section>
+
+        <section class="view" id="view-eval">
+      <div class="card">
+        <h2>评测趋势</h2>
+        <p class="sub">内置文档：真评测（MRR/recall）。新文档：自检通过，无评测集，MRR 跳过。</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div><div id="mrrChart" style="width:100%;height:280px;"></div></div>
+          <div><div id="recallChart" style="width:100%;height:280px;"></div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <h2>评测历史</h2>
+        <table>
+          <thead><tr><th>时间</th><th>集合</th><th>MRR</th><th>Recall</th><th>拒答准确率</th><th>说明</th></tr></thead>
+          <tbody id="evalHistoryBody"></tbody>
+        </table>
+        <div class="empty" id="evalHistoryEmpty" style="display:none;">暂无评测记录</div>
+      </div>
+    </section>
+
+        <div class="chunk-modal-mask" id="chunkDetailMask" onclick="if(event.target===this)closeChunkDetail()">
+      <div class="chunk-modal-box">
+        <div class="chunk-modal-head">
+          <span class="chunk-modal-title" id="chunkDetailTitle">块详情</span>
+          <button class="chunk-modal-close" onclick="closeChunkDetail()">✕ 关闭</button>
+        </div>
+        <div class="chunk-modal-body" id="chunkDetail"></div>
+      </div>
+    </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/echarts.min.js"></script>
+  <link rel="stylesheet" href="/katex.min.css">
+  <script src="/katex.min.js"></script>
+  <script>
+    const API_BASE = localStorage.getItem('api_base') || location.origin;
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    const stageNames = [
+      ['parse', '解析'], ['clean', '清洗'], ['chunk', '分块'],
+      ['embed', '向量化'], ['upsert', '入库'], ['eval', '评测']
+    ];
+    const semanticTypes = ['概述', '术语定义', '参数查询', '流程步骤', '标准要求', '安全要求', '图语义'];
+    const activeStatuses = new Set(['pending', 'parsing', 'cleaning', 'chunking', 'vectorizing', 'ingesting', 'evaluating']);
+    const recentTaskKey = 'recentTaskId';
+    const legacyTaskKey = 'active_pipeline_task_id';
+    let currentSource = null;
+    let restoreAttempted = false;
+    let latestDocuments = [];
+    let latestUploadCollections = {};
+    let semanticChart = null;
+    let tokenChart = null;
+    let selectedVectorCollection = '';
+
+    if (!token) location.href = '/login';
+    if (role !== 'admin') {
+      document.body.innerHTML = `<main class="shell"><div class="card"><h1>需要管理员权限</h1><p class="sub">普通用户只能访问标准证据驾驶舱。</p><button onclick="location.href='/'">返回问答页</button></div></main>`;
+    } else {
+      document.getElementById('roleBadge').textContent = '角色：admin';
+      initTabs();
+      initChunkDashboard();
+      renderPipeline();
+      if (readRecentTaskId()) {
+        restoreAttempted = true;
+        restoreSavedPipeline();
+      }
+      refreshAll();
+    }
+
+    function authHeaders(json = false) {
+      const h = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+      if (json) h['Content-Type'] = 'application/json';
+      return h;
+    }
+    function escapeHtml(text) {
+      return String(text ?? '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+    function renderContent(text) {
+      if (!text) return '';
+      const parts = String(text).split(/(\$\$[\s\S]*?\$\$|\$[^$\n]*?\$)/g);
+      return parts.map(p => {
+        if (p.startsWith('$$') && p.endsWith('$$') && p.length > 4) {
+          try { return katex.renderToString(p.slice(2, -2), {displayMode: true, throwOnError: false}); }
+          catch (e) { return escapeHtml(p); }
+        }
+        if (p.startsWith('$') && p.endsWith('$') && p.length > 2) {
+          try { return katex.renderToString(p.slice(1, -1), {throwOnError: false}); }
+          catch (e) { return escapeHtml(p); }
+        }
+        return escapeHtml(p);
+      }).join('');
+    }
+    function showError(message) {
+      const el = document.getElementById('globalError');
+      el.textContent = message;
+      el.style.display = 'block';
+    }
+    function clearError() { document.getElementById('globalError').style.display = 'none'; }
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      location.href = '/login';
+    }
+    function saveRecentTaskId(taskId) {
+      if (!taskId) return;
+      localStorage.setItem(recentTaskKey, taskId);
+      localStorage.setItem(legacyTaskKey, taskId);
+    }
+    function readRecentTaskId() {
+      return localStorage.getItem(recentTaskKey) || localStorage.getItem(legacyTaskKey);
+    }
+    function clearRecentTaskId() {
+      localStorage.removeItem(recentTaskKey);
+      localStorage.removeItem(legacyTaskKey);
+    }
+    function initTabs() {
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById('view-' + tab.dataset.view).classList.add('active');
+          if (tab.dataset.view === 'documents') loadChunkDashboard();
+        });
+      });
+    }
+
+    async function api(path, options = {}) {
+      const resp = await fetch(API_BASE + path, options);
+      if (resp.status === 401) { logout(); throw new Error('未登录'); }
+      if (resp.status === 403) throw new Error('需要管理员权限');
+      if (!resp.ok) {
+        let detail = '请求失败 ' + resp.status;
+        try { detail = (await resp.json()).detail || detail; } catch (e) {}
+        throw new Error(detail);
+      }
+      return resp.json();
+    }
+
+    function initChunkDashboard() {
+      const docFilter = document.getElementById('chunkDocFilter');
+      const semanticFilter = document.getElementById('chunkSemanticFilter');
+      if (!docFilter || !semanticFilter) return;
+      docFilter.innerHTML = '<option value="">全部文档</option>';
+      semanticFilter.innerHTML = '<option value="">全部语义类型</option>' +
+        semanticTypes.map(type => `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`).join('');
+      docFilter.addEventListener('change', loadChunkDashboard);
+      semanticFilter.addEventListener('change', loadChunkDashboard);
+      window.addEventListener('resize', () => {
+        if (semanticChart) semanticChart.resize();
+        if (tokenChart) tokenChart.resize();
+      });
+    }
+
+    function renderDocumentFilterOptions() {
+      const select = document.getElementById('chunkDocFilter');
+      if (!select) return;
+      const current = select.value;
+      const knownCollections = new Set();
+      const options = [{ value: '', label: '全部文档' }];
+      latestDocuments.forEach(doc => {
+        if (doc.collection) knownCollections.add(doc.collection);
+        options.push({
+          value: doc.id || '',
+          label: `${doc.builtin ? '内置' : '上传'} · ${doc.name || doc.id || '未命名文档'}`
+        });
+      });
+      Object.entries(latestUploadCollections).forEach(([collection, count]) => {
+        if (knownCollections.has(collection)) return;
+        options.push({
+          value: 'collection:' + collection,
+          label: `上传集合 · ${collection} · ${count}块`
+        });
+      });
+      select.innerHTML = options.map(opt =>
+        `<option value="${escapeHtml(opt.value)}">${escapeHtml(opt.label)}</option>`
+      ).join('');
+      if (Array.from(select.options).some(opt => opt.value === current)) {
+        select.value = current;
+      }
+    }
+
+    function chunkQueryString() {
+      const docValue = document.getElementById('chunkDocFilter')?.value || '';
+      const semanticValue = document.getElementById('chunkSemanticFilter')?.value || '';
+      const params = new URLSearchParams();
+      if (docValue.startsWith('collection:')) params.set('collection', docValue.slice('collection:'.length));
+      else if (docValue) params.set('document_id', docValue);
+      if (semanticValue) params.set('semantic_type', semanticValue);
+      const qs = params.toString();
+      return qs ? '?' + qs : '';
+    }
+
+    async function loadChunkDashboard() {
+      const body = document.getElementById('chunkBody');
+      if (!body) return;
+      try {
+        const data = await api('/chunks' + chunkQueryString(), { headers: authHeaders() });
+        renderChunkDashboard(data);
+      } catch (e) {
+        showError(e.message);
+        renderChunkDashboard({ items: [], summary: emptyChunkSummary(), semantic_types: semanticTypes, token_buckets: ['0-100', '101-300', '301-512', '513+'] });
+      }
+    }
+
+    function emptyChunkSummary() {
+      return {
+        chunk_count: 0,
+        avg_token: 0,
+        fragment_count: 0,
+        semantic_distribution: Object.fromEntries(semanticTypes.map(type => [type, 0])),
+        token_histogram: { '0-100': 0, '101-300': 0, '301-512': 0, '513+': 0 }
+      };
+    }
+
+    function renderChunkDashboard(data) {
+      const summary = data.summary || emptyChunkSummary();
+      document.getElementById('chunkTotal').textContent = summary.chunk_count ?? 0;
+      document.getElementById('chunkAvgToken').textContent = summary.avg_token ?? 0;
+      document.getElementById('chunkFragments').textContent = summary.fragment_count ?? 0;
+      renderChunkCharts(data);
+      renderChunkRows(data.items || []);
+    }
+
+    function setChartEmpty(kind) {
+      if (kind === 'semantic' && semanticChart) {
+        semanticChart.dispose();
+        semanticChart = null;
+      }
+      if (kind === 'token' && tokenChart) {
+        tokenChart.dispose();
+        tokenChart = null;
+      }
+      const el = document.getElementById(kind === 'semantic' ? 'semanticChart' : 'tokenChart');
+      el.innerHTML = '<div class="empty">暂无数据</div>';
+    }
+
+    function renderChunkCharts(data) {
+      const summary = data.summary || emptyChunkSummary();
+      const total = Number(summary.chunk_count || 0);
+      if (!window.echarts || !total) {
+        setChartEmpty('semantic');
+        setChartEmpty('token');
+        return;
+      }
+      const chartText = { color: '#6b7280' };
+      const semanticLabels = data.semantic_types || semanticTypes;
+      const semanticValues = semanticLabels.map(type => Number((summary.semantic_distribution || {})[type] || 0));
+      const semanticEl = document.getElementById('semanticChart');
+      semanticEl.innerHTML = '';
+      if (semanticChart) semanticChart.dispose();
+      semanticChart = echarts.init(semanticEl);
+      semanticChart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'axis' },
+        grid: { left: 72, right: 16, top: 12, bottom: 24 },
+        xAxis: { type: 'value', axisLabel: chartText, splitLine: { lineStyle: { color: '#eeece9' } } },
+        yAxis: { type: 'category', data: semanticLabels, axisLabel: chartText, axisTick: { show: false } },
+        series: [{ type: 'bar', data: semanticValues, barWidth: 14, itemStyle: { color: '#6c4bf4', borderRadius: [0, 6, 6, 0] } }]
+      });
+
+      const buckets = data.token_buckets || ['0-100', '101-300', '301-512', '513+'];
+      const tokenValues = buckets.map(bucket => Number((summary.token_histogram || {})[bucket] || 0));
+      const tokenEl = document.getElementById('tokenChart');
+      tokenEl.innerHTML = '';
+      if (tokenChart) tokenChart.dispose();
+      tokenChart = echarts.init(tokenEl);
+      tokenChart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'axis' },
+        grid: { left: 42, right: 16, top: 18, bottom: 32 },
+        xAxis: { type: 'category', data: buckets, axisLabel: chartText, axisTick: { show: false } },
+        yAxis: { type: 'value', axisLabel: chartText, splitLine: { lineStyle: { color: '#eeece9' } } },
+        series: [{ type: 'bar', data: tokenValues, barWidth: 24, itemStyle: { color: '#8b5cf6', borderRadius: [6, 6, 0, 0] } }]
+      });
+    }
+
+    function jsString(text) {
+      return String(text ?? '')
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/\r?\n/g, ' ');
+    }
+
+    function renderChunkRows(items) {
+      const body = document.getElementById('chunkBody');
+      const empty = document.getElementById('chunkEmpty');
+      empty.style.display = items.length ? 'none' : 'block';
+      body.innerHTML = items.map(item => `
+        <tr>
+          <td data-label="文档">${escapeHtml(item.document || item.document_id || item.collection || '—')}<br><span class="muted">${escapeHtml(item.document_kind || '')}</span></td>
+          <td data-label="页码/章节">p${escapeHtml(item.page || '—')}<br><span class="muted">${escapeHtml(item.section || '章节未提供')}</span></td>
+          <td data-label="语义类型"><span class="badge">${escapeHtml(item.semantic_type || '未标注')}</span></td>
+          <td data-label="Token">${escapeHtml(item.token_len ?? 0)}</td>
+          <td data-label="片段"><div class="chunk-content">${renderContent((item.content || '').slice(0, 180))}</div></td>
+          <td data-label="操作"><button class="ghost" onclick="showChunkDetail('${jsString(item.id)}', '${jsString(item.collection)}')">查看</button></td>
+        </tr>
+      `).join('');
+    }
+
+    async function showChunkDetail(id, collection) {
+      const mask = document.getElementById('chunkDetailMask');
+      const title = document.getElementById('chunkDetailTitle');
+      const detail = document.getElementById('chunkDetail');
+      title.textContent = '块详情';
+      detail.style.display = 'block';
+      detail.innerHTML = '<div class="chunk-detail-loading">正在加载块详情…</div>';
+      mask.classList.add('show');
+      try {
+        const suffix = collection ? '?collection=' + encodeURIComponent(collection) : '';
+        const data = await api('/chunks/' + encodeURIComponent(id) + suffix, { headers: authHeaders() });
+        title.textContent = '块详情 · ' + (data.document || data.document_id || '标准文档');
+        detail.innerHTML = `<div class="muted">p${escapeHtml(data.page || '—')} · ${escapeHtml(data.section || '章节未提供')} · ${escapeHtml(data.semantic_type || '未标注')} · ${escapeHtml(data.token_len ?? 0)} Token · ${escapeHtml(data.collection || '')}</div>
+          ${data.content ? `<pre>${renderContent(data.content)}</pre>` : '<div class="muted">（该块无文本内容）</div>'}`;
+        console.log('[chunkDetail] 渲染完成, content 长度:', (data.content || '').length);
+      } catch (e) {
+        title.textContent = '块详情加载失败';
+        detail.innerHTML = `<div class="chunk-detail-error">${escapeHtml(e.message || '详情接口请求失败')}</div>`;
+        showError(e.message);
+      }
+    }
+
+    function closeChunkDetail() {
+      document.getElementById('chunkDetailMask').classList.remove('show');
+    }
+
+    let mrrChartInst = null, recallChartInst = null;
+
+    async function loadEvalHistory() {
+      try {
+        const data = await api('/admin/eval-history', { headers: authHeaders() });
+        if (!Array.isArray(data) || !data.length) {
+          document.getElementById('evalHistoryEmpty').style.display = 'block';
+          return;
+        }
+        document.getElementById('evalHistoryEmpty').style.display = 'none';
+        const rows = data.slice().reverse(); // 时间正序
+        const labels = rows.map(r => new Date(r.created_at * 1000).toLocaleString('zh-CN', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}));
+        const mrrVals = rows.map(r => r.mrr);
+        const recallVals = rows.map(r => r.recall);
+
+        const common = { grid: {left: 40, right: 16, top: 34, bottom: 30}, tooltip: {trigger: 'axis'} };
+        if (mrrChartInst) mrrChartInst.dispose();
+        if (recallChartInst) recallChartInst.dispose();
+        mrrChartInst = echarts.init(document.getElementById('mrrChart'));
+        recallChartInst = echarts.init(document.getElementById('recallChart'));
+        mrrChartInst.setOption({
+          ...common, title: {text: 'MRR 趋势', textStyle: {color: '#111827', fontSize: 13}, left: 6},
+          xAxis: {type: 'category', data: labels, axisLabel: {color: '#6b7280', fontSize: 10}},
+          yAxis: {type: 'value', min: 0, max: 1, axisLabel: {color: '#6b7280'}, splitLine: {lineStyle: {color: '#eeece9'}}},
+          series: [{type: 'line', data: mrrVals, smooth: true, symbolSize: 7,
+            lineStyle: {color: '#6c4bf4', width: 2}, itemStyle: {color: '#6c4bf4'},
+            areaStyle: {color: 'rgba(108,75,244,.12)'}}]
+        });
+        recallChartInst.setOption({
+          ...common, title: {text: 'Recall 趋势', textStyle: {color: '#111827', fontSize: 13}, left: 6},
+          xAxis: {type: 'category', data: labels, axisLabel: {color: '#6b7280', fontSize: 10}},
+          yAxis: {type: 'value', min: 0, max: 1, axisLabel: {color: '#6b7280'}, splitLine: {lineStyle: {color: '#eeece9'}}},
+          series: [{type: 'line', data: recallVals, smooth: true, symbolSize: 7,
+            lineStyle: {color: '#22c55e', width: 2}, itemStyle: {color: '#22c55e'},
+            areaStyle: {color: 'rgba(34,197,94,.12)'}}]
+        });
+
+        document.getElementById('evalHistoryBody').innerHTML = rows.slice().reverse().map(r => `
+          <tr>
+            <td data-label="时间">${new Date(r.created_at * 1000).toLocaleString('zh-CN')}</td>
+            <td data-label="集合">${escapeHtml((r.collection || '—').slice(0, 32))}</td>
+            <td data-label="MRR">${r.mrr != null ? Number(r.mrr).toFixed(4) : '—'}</td>
+            <td data-label="Recall">${r.recall != null ? Number(r.recall).toFixed(4) : '—'}</td>
+            <td data-label="拒答准确率">${r.refusal_acc != null ? Number(r.refusal_acc).toFixed(4) : '—'}</td>
+            <td data-label="说明">${escapeHtml(r.note || '')}</td>
+          </tr>`).join('');
+      } catch (e) { /* 静默 */ }
+    }
+
+    async function loadVectorLibraries() {
+      try {
+        const data = await api('/admin/vector-libraries', { headers: authHeaders() });
+        const cols = (data.collections || []);
+        const box = document.getElementById('vectorCards');
+        document.getElementById('vectorEmpty').style.display = cols.length ? 'none' : 'block';
+        box.innerHTML = cols.map(c => `
+          <article class="vector-card ${c.collection === selectedVectorCollection ? 'active' : ''}" role="button" tabindex="0"
+            data-collection="${escapeHtml(c.collection)}" title="${escapeHtml(c.collection)}"
+            onclick="showVectorDetail('${jsString(c.collection)}')"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showVectorDetail('${jsString(c.collection)}');}">
+            <div class="vector-card-top">
+              <div class="vector-count">${escapeHtml(c.chunk_count ?? 0)}</div>
+              <div class="vector-kind">${c.collection === 'device_knowledge_v8' ? '内置集合' : '上传集合'}</div>
+            </div>
+            <div class="vector-name">${escapeHtml(c.collection)}</div>
+            <div class="vector-meta">
+              <span>dense ${escapeHtml(c.dense_dim || '?')} 维</span>
+              <span>sparse ${c.sparse_enabled ? '已启用' : '未启用'}</span>
+              <span>${escapeHtml((c.payload_fields || []).length)} 个元数据字段</span>
+            </div>
+          </article>`).join('');
+      } catch (e) { /* 静默 */ }
+    }
+
+    async function showVectorDetail(collection) {
+      try {
+        selectedVectorCollection = collection;
+        document.querySelectorAll('.vector-card').forEach(card => {
+          card.classList.toggle('active', card.dataset.collection === collection);
+        });
+        const chunks = await api('/chunks?collection=' + encodeURIComponent(collection) + '&limit=100', { headers: authHeaders() });
+        const items = chunks.items || chunks || [];
+        const hint = document.getElementById('vectorDetailHint');
+        const detail = document.getElementById('vectorDetail');
+        hint.style.display = 'none';
+        detail.style.display = 'block';
+        detail.innerHTML = `<div class="vector-detail-head">
+            <div>
+              <div class="vector-detail-name">${escapeHtml(collection)}</div>
+              <div class="muted" style="font-size:12px;margin-top:6px;">已载入 ${escapeHtml(items.length)} 个 chunk，点击上方集合可切换详情</div>
+            </div>
+          </div>
+          <div class="vector-detail-wrap">
+          <table>
+            <thead><tr><th>页码</th><th>语义类型</th><th>Token</th><th>文档</th><th>片段</th></tr></thead>
+            <tbody>${items.map((c, i) => `
+              <tr>
+                <td data-label="页码">p${escapeHtml(c.page || '—')}</td>
+                <td data-label="语义类型"><span class="badge">${escapeHtml(c.semantic_type || '未标注')}</span></td>
+                <td data-label="Token">${escapeHtml(c.token_len ?? 0)}</td>
+                <td data-label="文档">${escapeHtml((c.document || c.document_id || '').slice(0, 28))}</td>
+                <td data-label="片段"><div class="chunk-content">${renderContent((c.content || '').slice(0, 120))}</div></td>
+              </tr>`).join('') || '<tr><td colspan="5">暂无数据</td></tr>'}</tbody>
+          </table>
+          </div>`;
+      } catch (e) { showError(e.message); }
+    }
+
+    async function refreshAll() {
+      await Promise.allSettled([loadHealth(), loadStats(), loadDocuments(), loadChunkDashboard(), loadEvalHistory(), loadVectorLibraries()]);
+    }
+
+    async function loadHealth() {
+      try {
+        const data = await api('/admin/health', { headers: authHeaders() });
+        document.getElementById('apiState').textContent = data.api_health === 'online' ? '知识库在线' : 'API 异常';
+        document.getElementById('mCollection').textContent = data.collection || '—';
+        document.getElementById('mChunks').textContent = data.chunk_count ?? '—';
+        document.getElementById('mDocs').textContent = data.document_count ?? '—';
+        document.getElementById('mRerank').textContent = data.reranker_enabled ? 'ON' : 'OFF';
+        latestUploadCollections = data.upload_collections || {};
+        renderDocumentFilterOptions();
+        document.getElementById('healthPanel').innerHTML = [
+          ['向量库连接正常', data.qdrant_status],
+          ['检索能力状态', data.retrieval_ready ? 'ready' : 'unavailable'],
+          ['生成能力状态', data.generation_ready ? 'ready' : '未配置 DEEPSEEK_API_KEY'],
+          ['运行时长', data.uptime_s + 's']
+        ].map(([k,v]) => `<div class="hit"><div class="hit-head"><span>${escapeHtml(k)}</span><span>${escapeHtml(v)}</span></div></div>`).join('');
+      } catch (e) { showError(e.message); }
+    }
+
+    async function loadStats() {
+      try {
+        const data = await api('/admin/stats', { headers: authHeaders() });
+        const list = data.qa_history || [];
+        document.getElementById('qaEmpty').style.display = list.length ? 'none' : 'block';
+        document.getElementById('qaBody').innerHTML = list.slice().reverse().map(row => `
+          <tr>
+            <td data-label="问题">${escapeHtml(row.question)}</td>
+            <td data-label="命中页">${row.page ? 'p' + escapeHtml(row.page) : '—'}</td>
+            <td data-label="用户">${escapeHtml(row.user)} / ${escapeHtml(row.role)}</td>
+            <td data-label="状态"><span class="badge">${row.refused ? '标准依据不足' : '检索链路完成'}</span></td>
+          </tr>`).join('');
+      } catch (e) { showError(e.message); }
+    }
+
+    function docActions(doc) {
+      if (doc.builtin) return '<span class="muted">内置文档受保护</span>';
+      const parts = [];
+      if (doc.task_id) parts.push(`<button class="ghost" onclick="openPipeline('${doc.task_id}')">查看进度</button>`);
+      if (doc.error) parts.push(`<div class="muted">${escapeHtml(doc.error)}</div>`);
+      parts.push(`<button class="danger" onclick="deleteDoc('${doc.id}')">删除</button>`);
+      return parts.join(' ');
+    }
+
+    async function loadDocuments() {
+      try {
+        const docs = await api('/documents', { headers: authHeaders() });
+        latestDocuments = docs;
+        renderDocumentFilterOptions();
+        document.getElementById('docEmpty').style.display = docs.length ? 'none' : 'block';
+        document.getElementById('docBody').innerHTML = docs.map(doc => `
+          <tr>
+            <td data-label="文档">${escapeHtml(doc.name || doc.id)}</td>
+            <td data-label="状态"><span class="badge">${statusLabel(doc.status)}</span></td>
+            <td data-label="集合">${escapeHtml(doc.collection)}</td>
+            <td data-label="块数">${doc.chunk_count ?? 0}</td>
+            <td data-label="解析模式">${escapeHtml(doc.extract_mode || '—')}</td>
+            <td data-label="操作">${docActions(doc)}</td>
+          </tr>`).join('');
+        resumeActivePipeline(docs);
+      } catch (e) { showError(e.message); }
+    }
+
+    function statusLabel(status) {
+      return {
+        pending: '待处理', parsing: '解析中', cleaning: '清洗中', chunking: '分块中',
+        vectorizing: '向量化中', ingesting: '入库中', evaluating: '评测中',
+        done: '已完成', failed: '失败'
+      }[status] || status || '—';
+    }
+
+    function renderPipeline(task = null) {
+      const steps = task && task.steps ? task.steps : stageNames.map(([name,label]) => ({ name, label, state: 'pending', stats: {} }));
+      document.getElementById('pipeline').innerHTML = steps.map((s, idx) => `
+        <div class="stage ${escapeHtml(s.state)}">
+          <div class="stage-title"><span class="dot"></span><span>${idx + 1}. ${escapeHtml(s.label)}</span></div>
+          <div class="stage-stats">${s.state === 'running' ? '<span style="color:#6c4bf4">处理中…</span>' : s.state === 'done' ? '<span style="color:#22c55e">完成 ✓</span>' : s.state === 'failed' ? '<span style="color:#ef4444">失败 ✗</span>' : renderStats(s.stats)}${s.elapsed_ms ? ' · 耗时 ' + s.elapsed_ms + 'ms' : ''}</div>
+          <div class="progress"><span style="width:${s.state === 'done' ? 100 : s.state === 'running' ? 100 : 0}%"></span></div>
+        </div>
+      `).join('');
+    }
+
+    function renderStats(stats) {
+      const entries = Object.entries(stats || {});
+      if (!entries.length) return '—';
+      return entries.slice(0, 5).map(([k,v]) => `${escapeHtml(k)}：${escapeHtml(typeof v === 'object' ? JSON.stringify(v) : v)}`).join('<br>');
+    }
+
+
+    // 拖拽上传
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    if (dropZone) {
+      dropZone.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', () => showSelectedFile(fileInput.files[0]));
+      dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragging'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragging'));
+      dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.classList.remove('dragging');
+        const f = e.dataTransfer.files && e.dataTransfer.files[0];
+        if (f) {
+          if (!f.name.toLowerCase().endsWith('.pdf')) { showError('仅支持 PDF 文件'); return; }
+          const dt = new DataTransfer();
+          dt.items.add(f);
+          fileInput.files = dt.files;
+          showSelectedFile(f);
+        }
+      });
+    }
+    function showSelectedFile(f) {
+      const hint = document.getElementById('dropHint');
+      const fileEl = document.getElementById('dropFile');
+      if (f) {
+        fileEl.textContent = '📄 ' + f.name + '（' + (f.size / 1024 / 1024).toFixed(1) + 'MB）';
+        fileEl.style.display = 'block';
+        hint.style.display = 'none';
+      } else {
+        fileEl.style.display = 'none';
+        hint.style.display = 'block';
+      }
+    }
+    async function uploadFile() {
+      clearError();
+      const file = document.getElementById('fileInput').files[0];
+      if (!file) { showError('请选择 PDF 文件'); return; }
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('mode', document.getElementById('mode').value);
+      document.getElementById('uploadBtn').disabled = true;
+      try {
+        const data = await api('/upload', { method: 'POST', headers: authHeaders(), body: fd });
+        saveRecentTaskId(data.task_id);
+        subscribePipeline(data.task_id);
+      } catch (e) {
+        showError(e.message);
+      } finally {
+        document.getElementById('uploadBtn').disabled = false;
+      }
+    }
+
+    async function openPipeline(taskId) {
+      clearError();
+      saveRecentTaskId(taskId);
+      try {
+        const snap = await api('/pipeline/' + taskId, { headers: authHeaders() });
+        renderPipeline(snap);
+        if (snap.status === 'failed' && snap.error) showError(snap.error);
+        if (activeStatuses.has(snap.status)) subscribePipeline(taskId);
+      } catch (e) { showError(e.message); }
+    }
+
+    async function restoreSavedPipeline() {
+      const taskId = readRecentTaskId();
+      if (!taskId) return false;
+      try {
+        const snap = await api('/pipeline/' + taskId, { headers: authHeaders() });
+        renderPipeline(snap);
+        if (snap.status === 'failed' && snap.error) showError(snap.error);
+        if (activeStatuses.has(snap.status)) subscribePipeline(taskId);
+        else clearRecentTaskId();
+        return true;
+      } catch (e) {
+        clearRecentTaskId();
+        return false;
+      }
+    }
+
+    function resumeActivePipeline(docs) {
+      if (restoreAttempted) return;
+      restoreAttempted = true;
+      restoreSavedPipeline().then(found => {
+        if (found) return;
+        const active = docs
+          .filter(doc => !doc.builtin && doc.task_id && activeStatuses.has(doc.status))
+          .sort((a, b) => (b.updated_at || b.created_at || 0) - (a.updated_at || a.created_at || 0))[0];
+        if (active) openPipeline(active.task_id);
+      });
+    }
+
+    function subscribePipeline(taskId) {
+      if (currentSource) currentSource.close();
+      currentSource = new EventSource(API_BASE + '/pipeline/' + taskId + '/events?token=' + encodeURIComponent(token));
+      currentSource.onmessage = event => {
+        const payload = JSON.parse(event.data);
+        if (payload.task) {
+          renderPipeline(payload.task);
+          if (['done', 'failed'].includes(payload.task.status)) {
+            currentSource.close();
+            if (payload.task.status === 'failed' && payload.task.error) showError(payload.task.error);
+            clearRecentTaskId();
+            refreshAll();
+          }
+        }
+      };
+      currentSource.onerror = () => {
+        currentSource.close();
+        pollPipeline(taskId);
+      };
+    }
+
+    function pollPipeline(taskId) {
+      let tries = 0;
+      const timer = setInterval(async () => {
+        tries++;
+        try {
+          const snap = await api('/pipeline/' + taskId, { headers: authHeaders() });
+          renderPipeline(snap);
+          if (['done', 'failed'].includes(snap.status) || tries > 120) {
+            if (['done', 'failed'].includes(snap.status)) {
+              if (snap.status === 'failed' && snap.error) showError(snap.error);
+              clearRecentTaskId();
+            }
+            clearInterval(timer);
+            refreshAll();
+          }
+        } catch (e) {
+          if (tries > 120) { clearInterval(timer); showError(e.message); }
+        }
+      }, 5000);
+    }
+
+    async function deleteDoc(id) {
+      if (!confirm('确认删除该上传文档及其独立集合？')) return;
+      try {
+        await api('/documents/' + encodeURIComponent(id), { method: 'DELETE', headers: authHeaders() });
+        loadDocuments();
+      } catch (e) { showError(e.message); }
+    }
+
+    async function runRetrieveTest() {
+      clearError();
+      const question = document.getElementById('retrieveQuestion').value.trim();
+      if (!question) { showError('请输入检索问题'); return; }
+      try {
+        const data = await api('/retrieve-test', {
+          method: 'POST',
+          headers: authHeaders(true),
+          body: JSON.stringify({ question, top_k: Number(document.getElementById('topK').value) })
+        });
+        renderRetrieveResults(data.reranked && data.reranked.length ? data.reranked : data.rrf || []);
+      } catch (e) { showError(e.message); }
+    }
+
+    function renderRetrieveResults(list) {
+      const box = document.getElementById('retrieveResults');
+      if (!list.length) {
+        box.innerHTML = '<div class="empty">未命中标准片段</div>';
+        return;
+      }
+      box.innerHTML = list.map((hit, idx) => {
+        const score = hit.rerank_score ?? hit.score ?? 0;
+        const width = Math.max(8, Math.min(100, score <= 1 ? score * 100 : score * 1000));
+        return `<div class="hit">
+          <div class="hit-head"><span>#${idx + 1} p${escapeHtml(hit.page || '—')} · ${escapeHtml(hit.section || '章节未提供')}</span><span>${Number(score).toFixed(4)}</span></div>
+          <div class="hit-body">${escapeHtml(hit.content || '接口未提供片段内容')}</div>
+          <div class="bar"><span style="width:${width}%"></span></div>
+        </div>`;
+      }).join('');
+    }
+  </script>
+</body>
+</html>
