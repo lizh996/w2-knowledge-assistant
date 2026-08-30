@@ -638,8 +638,17 @@ def ask(req: AskRequest, user: User = Depends(_require_auth)):
         )
 
     # 拒答判定：dense 偏语义，sparse 偏精确标准号，二者都低才拒答。
+    # 多轮对话：追问句（短/指代式）单独看可能低于阈值 → 拼上最近用户问题再判定
+    reject_question = question
+    if req.history:
+        for h in reversed(req.history[-6:]):
+            if h.get("role") == "user" and h.get("content"):
+                prev = str(h["content"])[:200]
+                if len(question) <= 12 or any(w in question for w in ["那", "它", "这", "其", "结果"]):
+                    reject_question = f"{prev} {question}"
+                break
     dense_start = time.time()
-    dense_score = dense_similarity(question)
+    dense_score = dense_similarity(reject_question)
     dense_elapsed = _ms(dense_start)
     sparse_score = None
     sparse_elapsed = 0
