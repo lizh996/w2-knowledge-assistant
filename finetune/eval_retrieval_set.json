@@ -1,0 +1,2102 @@
+[
+ {
+  "question": "充油电气设备取油样应按照什么标准？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 7,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "游离气体取样执行哪个标准？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 7,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油样采集后应在多长时间内完成检测？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 7,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "标准混合气体的典型浓度范围是多少？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 9,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何检查玻璃注射器的气密性？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 9,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "顶空进样瓶的容量和垫片要求是什么？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 9,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油中气体检测的重复性要求是什么？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 15,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "两个实验室测定油中溶解气体的再现性允许偏差是多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 15,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623标准中油中气体组分的最小检测浓度是多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 15,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何计算标油中气体组分的浓度？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "式(B.2)中各参数Cis、Cig、V'g、V'l分别代表什么？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "试验室大气压力不接近101.3kPa时，标油浓度如何进行压力修正？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623—2026由哪个标准化技术委员会归口？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 5,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623—2026的起草单位有哪些？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 5,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623标准的历次版本发布情况是怎样的？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 5,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "试油分析需要分析几次？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 23,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "试油分析的精密度应满足什么要求？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 23,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623—2026标准适用于什么检测？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 23,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "加平衡气时注射器C用平衡气清洗几次？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 11,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "振荡平衡时矿物绝缘油需要振荡多长时间？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 11,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "转移平衡气时采用什么方法？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 11,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T 17623-2024 绝缘油中溶解气体组分含量的气相色谱测定法有哪些主要技术变化？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 5,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "绝缘油中溶解气体气相色谱测定法相比2017版标准更新了什么内容？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 5,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何测定绝缘油中溶解气体组分含量？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 5,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "50℃时国产矿物绝缘油中各组分的奥斯特瓦尔德系数分别是多少？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 13,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "合成酯绝缘油和天然酯绝缘油在50℃下的奥斯特瓦尔德系数有何不同？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 13,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "真空取气法中样品气体体积和油样体积如何校正到20℃、101.3kPa？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 13,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "顶空取气法的原理是什么？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 21,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "真空取气法是如何收集析出气体的？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 21,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何根据分配系数计算油中溶解气体浓度？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 21,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何用标准混合气体标定色谱仪？",
+  "gold_chunk_id": "k1_513dc214",
+  "page": 12,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "两次相邻标定的重复性要求是多少？",
+  "gold_chunk_id": "k1_513dc214",
+  "page": 12,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "试样分析时进样体积和标定时有何要求？",
+  "gold_chunk_id": "k1_513dc214",
+  "page": 12,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何测定绝缘油中溶解气体的回收率？",
+  "gold_chunk_id": "k1_5634922a",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "附录B中回收率测定法的原理是什么？",
+  "gold_chunk_id": "k1_5634922a",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "脱气率怎么测，和回收率有什么关系？",
+  "gold_chunk_id": "k1_5634922a",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623中常温常压气体饱和器的结构示意图标注了哪些部件？",
+  "gold_chunk_id": "k1_571e91f2",
+  "page": 24,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "气体饱和器中散气元件（微孔烧结板）起什么作用？",
+  "gold_chunk_id": "k1_571e91f2",
+  "page": 24,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何根据GB/T17623使用常温常压气体饱和器进行试油气体饱和？",
+  "gold_chunk_id": "k1_571e91f2",
+  "page": 24,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "色谱仪气路流程中TCD和FID分别用于检测哪些气体？",
+  "gold_chunk_id": "k1_61976025",
+  "page": 17,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "顶空自动进样色谱仪如何通过自动阀切换实现CO2和C1~C2的检测？",
+  "gold_chunk_id": "k1_61976025",
+  "page": 17,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "气相色谱仪常用色谱柱中，用于HID检测的柱Ⅰ、柱Ⅱ和柱Ⅲ分别推荐哪些型号？",
+  "gold_chunk_id": "k1_61976025",
+  "page": 17,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何测定绝缘油中气体组分的分配系数？",
+  "gold_chunk_id": "k1_6a331b49",
+  "page": 25,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "混合气体在分配系数测定中如何准备？",
+  "gold_chunk_id": "k1_6a331b49",
+  "page": 25,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "分配系数测定时振荡和静置时间分别是多少？",
+  "gold_chunk_id": "k1_6a331b49",
+  "page": 25,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油中溶解气体浓度计算公式中的0.929是什么系数？",
+  "gold_chunk_id": "k1_6d060947",
+  "page": 13,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "50℃时油中溶解气体的奥斯特瓦尔德系数如何获取？",
+  "gold_chunk_id": "k1_6d060947",
+  "page": 13,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何用二次溶解平衡法测定气体分配系数？",
+  "gold_chunk_id": "k1_6d060947",
+  "page": 13,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "绝缘油中气体分配系数测定法的原理是什么？",
+  "gold_chunk_id": "k1_7532d6ff",
+  "page": 24,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "气体分配系数Ki的计算公式中各个参数代表什么？",
+  "gold_chunk_id": "k1_7532d6ff",
+  "page": 24,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "制备空白油样时为什么要通入高纯氮气？",
+  "gold_chunk_id": "k1_7532d6ff",
+  "page": 24,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "回收率怎么计算？",
+  "gold_chunk_id": "k1_90d29c6f",
+  "page": 20,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "标油中气体组分实测浓度如何测定？",
+  "gold_chunk_id": "k1_90d29c6f",
+  "page": 20,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T 17623中取标油分析步骤是什么？",
+  "gold_chunk_id": "k1_90d29c6f",
+  "page": 20,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何用二次溶解平衡法测定油样中气体含量？",
+  "gold_chunk_id": "k1_a89d0f6e",
+  "page": 27,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "二次溶解平衡法的计算公式（G.1）中xi代表什么？",
+  "gold_chunk_id": "k1_a89d0f6e",
+  "page": 27,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "当两次平衡后气体体积相差较大时，如何计算样品中的气体浓度？",
+  "gold_chunk_id": "k1_a89d0f6e",
+  "page": 27,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何计算50℃下平衡气的体积？",
+  "gold_chunk_id": "k1_ba8348ee",
+  "page": 28,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "当大气压力不是101.3kPa时，如何修正气体体积？",
+  "gold_chunk_id": "k1_ba8348ee",
+  "page": 28,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623—2026方法适用于哪些油样？",
+  "gold_chunk_id": "k1_ba8348ee",
+  "page": 28,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "采用自动进样真空取气装置时如何标定系统校正因子？",
+  "gold_chunk_id": "k1_bd29271d",
+  "page": 23,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "自动进样真空取气装置的分析步骤是什么？",
+  "gold_chunk_id": "k1_bd29271d",
+  "page": 23,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "标定bi值的重复性要求是多少？",
+  "gold_chunk_id": "k1_bd29271d",
+  "page": 23,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "恒温定时振荡器的控温温度是多少？",
+  "gold_chunk_id": "k1_be95521a",
+  "page": 10,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "自动顶空进样器的典型条件有哪些？",
+  "gold_chunk_id": "k1_be95521a",
+  "page": 10,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "机械振荡法取气的具体步骤是什么？",
+  "gold_chunk_id": "k1_be95521a",
+  "page": 10,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "气相色谱仪测定烃类气体和H2、O2、CO、CO2时常用的气路流程有哪些？",
+  "gold_chunk_id": "k1_d8822258",
+  "page": 16,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "使用镍触媒转化器时，FID检测CO和CO2的气路如何设计？",
+  "gold_chunk_id": "k1_d8822258",
+  "page": 16,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "表A.2中推荐的色谱柱序号与气路流程中柱Ⅰ、柱Ⅱ的对应关系是什么？",
+  "gold_chunk_id": "k1_d8822258",
+  "page": 16,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "机械振荡法专用的双头针头如何制作？",
+  "gold_chunk_id": "k1_e4a96047",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623-2026中规定的玻璃注射器容量规格有哪些？",
+  "gold_chunk_id": "k1_e4a96047",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "测定溶解气体时玻璃注射器的气密性要求是什么？",
+  "gold_chunk_id": "k1_e4a96047",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何计算游离气体中各组分浓度？",
+  "gold_chunk_id": "k1_e4f9b1f1",
+  "page": 14,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油中气体组分的最小检测浓度是多少？",
+  "gold_chunk_id": "k1_e4f9b1f1",
+  "page": 14,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T 17623标准中游离气体浓度计算公式是什么？",
+  "gold_chunk_id": "k1_e4f9b1f1",
+  "page": 14,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "自动顶空取气法中顶空瓶如何准备？",
+  "gold_chunk_id": "k1_e558a104",
+  "page": 11,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "真空脱气法取气后如何记录气体体积？",
+  "gold_chunk_id": "k1_e558a104",
+  "page": 11,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623—2026中油中溶解气体取样的方法有哪些？",
+  "gold_chunk_id": "k1_e558a104",
+  "page": 11,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "顶空取气法中机械振荡法样品气和油样体积如何校正？",
+  "gold_chunk_id": "k1_e5f6be3b",
+  "page": 12,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "自动顶空进样法中50℃平衡气体体积和油样体积怎么计算？",
+  "gold_chunk_id": "k1_e5f6be3b",
+  "page": 12,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T 17623中顶空取气法体积校正公式有哪些？",
+  "gold_chunk_id": "k1_e5f6be3b",
+  "page": 12,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "绝缘油中溶解气体组分含量的测定标准是什么？",
+  "gold_chunk_id": "k1_eadfdd45",
+  "page": 7,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何用气相色谱法测定绝缘油中的溶解气体？",
+  "gold_chunk_id": "k1_eadfdd45",
+  "page": 7,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油中溶解气体含量结果用什么单位表示？",
+  "gold_chunk_id": "k1_eadfdd45",
+  "page": 7,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "氢气纯度不低于多少？",
+  "gold_chunk_id": "k1_ede71d68",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油气分离装置有哪些类型？",
+  "gold_chunk_id": "k1_ede71d68",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "气相色谱仪检测器有哪些配置？",
+  "gold_chunk_id": "k1_ede71d68",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油中气体组分浓度如何用二次平衡法计算？",
+  "gold_chunk_id": "k1_ef44ddfd",
+  "page": 27,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "两次平衡取气时温度和压力如何校正？",
+  "gold_chunk_id": "k1_ef44ddfd",
+  "page": 27,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T 17623中注射器取油样体积是多少？",
+  "gold_chunk_id": "k1_ef44ddfd",
+  "page": 27,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "70℃时进口矿物绝缘油中氢气的分配系数是多少？",
+  "gold_chunk_id": "k1_fc4b4d51",
+  "page": 26,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "矿物绝缘油的气体分配系数数据来源是哪个标准？",
+  "gold_chunk_id": "k1_fc4b4d51",
+  "page": 26,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "进口矿物绝缘油的气体分配系数表在标准的哪个附录？",
+  "gold_chunk_id": "k1_fc4b4d51",
+  "page": 26,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "油中溶解气体各组分的浓度计算公式是什么？",
+  "gold_chunk_id": "k1_fc8118bc",
+  "page": 14,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "如何将室温下的气体体积换算到20℃、101.3kPa状况下？",
+  "gold_chunk_id": "k1_fc8118bc",
+  "page": 14,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "式(7)中Ri表示什么，如何获取？",
+  "gold_chunk_id": "k1_fc8118bc",
+  "page": 14,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "真空取气法的原理结构是怎样的？",
+  "gold_chunk_id": "k1_fcbd8171",
+  "page": 22,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "真空取气法装置中取气室和气体转移器如何连接？",
+  "gold_chunk_id": "k1_fcbd8171",
+  "page": 22,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "GB/T17623标准中真空取气法简图包含哪些部件？",
+  "gold_chunk_id": "k1_fcbd8171",
+  "page": 22,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "变压器拆卸运输和贮存时应注意哪些事项？",
+  "gold_chunk_id": "k2_0595d260",
+  "page": 23,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV变压器的额定容量和电压组合有哪些标准规定？",
+  "gold_chunk_id": "k2_0595d260",
+  "page": 23,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV变压器分接范围调整有哪些具体要求？",
+  "gold_chunk_id": "k2_0595d260",
+  "page": 23,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器成套拆卸组件包装有哪些防损防潮要求？",
+  "gold_chunk_id": "k2_0693f8ac",
+  "page": 35,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器整体运输时如何保护储油柜、套管等部件？",
+  "gold_chunk_id": "k2_0693f8ac",
+  "page": 35,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器运输中内部结构紧固件有哪些固定要求？",
+  "gold_chunk_id": "k2_0693f8ac",
+  "page": 35,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器箱底支架安装孔中心距的标准尺寸有哪些？",
+  "gold_chunk_id": "k2_1a7a8b6c",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "套管接线端子连接处在空气和油中的温升限值是多少？",
+  "gold_chunk_id": "k2_1a7a8b6c",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器铁芯接地和金属结构件接地有什么要求？",
+  "gold_chunk_id": "k2_1a7a8b6c",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "压力变形试验中波纹式油箱在不同容量下的试验压力是多少？",
+  "gold_chunk_id": "k2_2186243a",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油箱内部充有气体的密封式变压器需承受多大的试验压力？",
+  "gold_chunk_id": "k2_2186243a",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油箱开裂试验通常在什么条件下进行？",
+  "gold_chunk_id": "k2_2186243a",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "配电变压器相电阻不平衡率允许的最大值是多少？",
+  "gold_chunk_id": "k2_2a31e3b1",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "除配电变压器外的电力变压器相电阻不平衡率限值是多少？",
+  "gold_chunk_id": "k2_2a31e3b1",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "配电变压器线电阻不平衡率不应大于多少？",
+  "gold_chunk_id": "k2_2a31e3b1",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T1.1-2020标准文件的起草规则是什么？",
+  "gold_chunk_id": "k2_36e8f225",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "标准化工作导则第1部分的内容是什么？",
+  "gold_chunk_id": "k2_36e8f225",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "如何按照GB/T1.1-2020制定标准文件？",
+  "gold_chunk_id": "k2_36e8f225",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器铁芯的接地方式有什么要求？",
+  "gold_chunk_id": "k2_40984f78",
+  "page": 21,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器金属结构件应如何接地？",
+  "gold_chunk_id": "k2_40984f78",
+  "page": 21,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器接地处需要设置什么标识？",
+  "gold_chunk_id": "k2_40984f78",
+  "page": 21,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器上应有哪几种标志？",
+  "gold_chunk_id": "k2_40a8e782",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器运输和起吊标志有什么要求？",
+  "gold_chunk_id": "k2_40a8e782",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "套管排列顺序在标准中参考哪些图？",
+  "gold_chunk_id": "k2_40a8e782",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "有载分接开关装入变压器后油室密封试验有什么要求？",
+  "gold_chunk_id": "k2_4753058d",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器短时过负载能力试验的环境温度和电流倍数是多少？",
+  "gold_chunk_id": "k2_4753058d",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "波纹式油箱变压器的压力变形试验压力值是多少？",
+  "gold_chunk_id": "k2_4753058d",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器油箱下部应安装什么阀门？",
+  "gold_chunk_id": "k2_47af047b",
+  "page": 32,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "套管接线端子对空气和对油的温升分别不应大于多少？",
+  "gold_chunk_id": "k2_47af047b",
+  "page": 32,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV级变压器油箱的真空度和正压力值是如何规定的？",
+  "gold_chunk_id": "k2_47af047b",
+  "page": 32,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "这个标准的归口单位是哪个？",
+  "gold_chunk_id": "k2_51b5bc4d",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "这个标准的提出单位是谁？",
+  "gold_chunk_id": "k2_51b5bc4d",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "有哪些单位参与了该标准的起草？",
+  "gold_chunk_id": "k2_51b5bc4d",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "6kV、10kV级非晶合金立体卷铁芯变压器声功率级限值是多少？",
+  "gold_chunk_id": "k2_58ff619b",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "气体继电器接点容量在交流220V时不应小于多少？",
+  "gold_chunk_id": "k2_58ff619b",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "800kVA及以上变压器是否应装有气体继电器？",
+  "gold_chunk_id": "k2_58ff619b",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "容量8000kVA及以上变压器的tanδ测试温度范围是多少？",
+  "gold_chunk_id": "k2_6834a1f8",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "铁芯对地绝缘电阻值不应小于多少？",
+  "gold_chunk_id": "k2_6834a1f8",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "一般结构油箱的压力密封试验按什么标准执行？",
+  "gold_chunk_id": "k2_6834a1f8",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器绕组电阻不平衡率的允许限值是多少？",
+  "gold_chunk_id": "k2_69a99ec1",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "直流绝缘电阻测试应在什么环境条件下进行？",
+  "gold_chunk_id": "k2_69a99ec1",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "不同温度下测得的直流绝缘电阻值如何换算？",
+  "gold_chunk_id": "k2_69a99ec1",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器绕组电阻不平衡率的具体限值是多少？",
+  "gold_chunk_id": "k2_7d5ad51e",
+  "page": 32,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "直流绝缘电阻试验的温度和湿度条件是什么？",
+  "gold_chunk_id": "k2_7d5ad51e",
+  "page": 32,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器试验项目除GB/T1094.1和JB/T501外还需符合哪些规定？",
+  "gold_chunk_id": "k2_7d5ad51e",
+  "page": 32,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "压力密封试验中，315kVA及以下波纹式油箱应承受多大的试验压力？",
+  "gold_chunk_id": "k2_7e770e1d",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器短时过负载能力试验的环境温度要求是多少？",
+  "gold_chunk_id": "k2_7e770e1d",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油箱内部充有气体的密封式变压器，油面上部应承受多少试验压力？",
+  "gold_chunk_id": "k2_7e770e1d",
+  "page": 22,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV变压器Dyn11联结组的套管排列是怎样的？",
+  "gold_chunk_id": "k2_828b479e",
+  "page": 34,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "Yd11联结组的变压器套管如何排列？",
+  "gold_chunk_id": "k2_828b479e",
+  "page": 34,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器起吊装置应满足什么要求？",
+  "gold_chunk_id": "k2_828b479e",
+  "page": 34,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "绕组电阻不平衡率的最大允许值是多少？",
+  "gold_chunk_id": "k2_8304dfff",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "不同温度下直流绝缘电阻如何换算？",
+  "gold_chunk_id": "k2_8304dfff",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "波纹式油箱变压器的压力密封试验压力要求是什么？",
+  "gold_chunk_id": "k2_8304dfff",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV级非晶合金变压器声功率级限值是多少？",
+  "gold_chunk_id": "k2_84ccc528",
+  "page": 30,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "800kVA及以上变压器是否必须安装气体继电器？",
+  "gold_chunk_id": "k2_84ccc528",
+  "page": 30,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油浸风冷变压器风扇电动机的电源电压和频率要求是什么？",
+  "gold_chunk_id": "k2_84ccc528",
+  "page": 30,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB_T_25438-2026.pdf 中关于6.的要求是什么？",
+  "gold_chunk_id": "k2_862b3a26",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB_T_25438-2026.pdf 中关于3.的要求是什么？",
+  "gold_chunk_id": "k2_862b3a26",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB_T_25438-2026.pdf 中关于对于配电变压器的要求是什么？",
+  "gold_chunk_id": "k2_862b3a26",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器油箱液压试验的压力和时间要求是什么？",
+  "gold_chunk_id": "k2_8da463a9",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "运输颠簸试验的试验方法及要求由谁协商？",
+  "gold_chunk_id": "k2_8da463a9",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器标志、起吊、包装、运输和贮存有哪些规定？",
+  "gold_chunk_id": "k2_8da463a9",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "高压双电压20(10)kV变压器的例行试验项目有哪些？",
+  "gold_chunk_id": "k2_98b753ee",
+  "page": 36,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "型式试验中的温升试验在哪个电压等级下进行？",
+  "gold_chunk_id": "k2_98b753ee",
+  "page": 36,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "特殊试验中包括哪些具体项目？",
+  "gold_chunk_id": "k2_98b753ee",
+  "page": 36,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T25438-2026中35kV级三相油浸式非晶合金立体卷铁芯变压器的声功率级限值是多少？",
+  "gold_chunk_id": "k2_b0016ed8",
+  "page": 4,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "20kV级三相油浸式立体卷铁芯变压器有哪些类型和容量范围？",
+  "gold_chunk_id": "k2_b0016ed8",
+  "page": 4,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV级变压器油箱的真空度和正压力值要求是什么？",
+  "gold_chunk_id": "k2_b0016ed8",
+  "page": 4,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器储油柜的容积和油位显示要求是什么？",
+  "gold_chunk_id": "k2_b15bbbbb",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油温测量装置管座的安装位置和伸入深度是多少？",
+  "gold_chunk_id": "k2_b15bbbbb",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "1000kVA及以上变压器户外测温装置的接点容量要求？",
+  "gold_chunk_id": "k2_b15bbbbb",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "新版GB/T 25438相比2010版主要增加了哪些电压等级和铁芯材质？",
+  "gold_chunk_id": "k2_c8b59fe4",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "6kV和10kV级电工钢无励磁调压配电变压器的最大额定容量提高到多少？",
+  "gold_chunk_id": "k2_c8b59fe4",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "20kV级双电压变压器的试验要求见哪个附录？",
+  "gold_chunk_id": "k2_c8b59fe4",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "35kV级变压器的箱底支架位置在哪里？",
+  "gold_chunk_id": "k2_cb596f70",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T25438-2026中关于箱底支架位置的规定是什么？",
+  "gold_chunk_id": "k2_cb596f70",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "图5标注的35kV变压器箱底支架位置的具体要求有哪些？",
+  "gold_chunk_id": "k2_cb596f70",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油箱在103kPa正压力下试验多长时间？",
+  "gold_chunk_id": "k2_d3db2246",
+  "page": 23,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器运输颠簸试验有什么要求？",
+  "gold_chunk_id": "k2_d3db2246",
+  "page": 23,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器应有哪些标志？",
+  "gold_chunk_id": "k2_d3db2246",
+  "page": 23,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "储油柜的容积应保证在什么条件下油位不超过上限？",
+  "gold_chunk_id": "k2_d5efe8ad",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器温度计管座的安装位置和伸入油内深度有何要求？",
+  "gold_chunk_id": "k2_d5efe8ad",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "1000kVA及以上变压器的户外测温装置接点容量在交流220V时有何规定？",
+  "gold_chunk_id": "k2_d5efe8ad",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "三相油浸式立体卷铁芯电力变压器的适用范围是什么？",
+  "gold_chunk_id": "k2_d96c01be",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "立体卷铁芯变压器技术参数标准适用于哪些电压等级？",
+  "gold_chunk_id": "k2_d96c01be",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T 标准中非晶合金铁芯变压器有哪些要求？",
+  "gold_chunk_id": "k2_d96c01be",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器油温测量装置的管座应伸入油内多少毫米？",
+  "gold_chunk_id": "k2_db9d3b8f",
+  "page": 21,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "20kV级变压器箱底支架安装孔中心距可选哪些尺寸？",
+  "gold_chunk_id": "k2_db9d3b8f",
+  "page": 21,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器套管接线端子对空气和对油的温升限值分别是多少？",
+  "gold_chunk_id": "k2_db9d3b8f",
+  "page": 21,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "储油柜的容积应保证在什么情况下油位不超过上限？",
+  "gold_chunk_id": "k2_ded2cc5d",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "储油柜上宜加装什么装置？",
+  "gold_chunk_id": "k2_ded2cc5d",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "储油柜应具有什么功能？",
+  "gold_chunk_id": "k2_ded2cc5d",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T25438-2026的主要起草人有哪些？",
+  "gold_chunk_id": "k2_e03e3260",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T25438标准的历次版本发布情况是怎样的？",
+  "gold_chunk_id": "k2_e03e3260",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T25438-2026代替了哪个标准？",
+  "gold_chunk_id": "k2_e03e3260",
+  "page": 5,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "20kV级非晶合金立体卷铁芯变压器声功率级限值是多少？",
+  "gold_chunk_id": "k2_e9a5a20f",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "800kVA及以上变压器是否必须安装气体继电器？",
+  "gold_chunk_id": "k2_e9a5a20f",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器气体继电器的接点容量要求是什么？",
+  "gold_chunk_id": "k2_e9a5a20f",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "6kV、10kV变压器套管排列顺序有什么要求？",
+  "gold_chunk_id": "k2_f19d4552",
+  "page": 16,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "变压器起吊装置应满足哪些规定？",
+  "gold_chunk_id": "k2_f19d4552",
+  "page": 16,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "20kV电压等级变压器的性能参数应符合哪个标准？",
+  "gold_chunk_id": "k2_f19d4552",
+  "page": 16,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "立体卷铁芯电力变压器的定义是什么？",
+  "gold_chunk_id": "k2_fef36bff",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "6kV和10kV电压等级立体卷铁芯变压器的性能参数要求有哪些？",
+  "gold_chunk_id": "k2_fef36bff",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油浸式非晶合金铁心配电变压器的技术参数参考哪个标准？",
+  "gold_chunk_id": "k2_fef36bff",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "开卷机的卷筒直径用什么工具检测？",
+  "gold_chunk_id": "k3_0728a783",
+  "page": 9,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "液压系统温升如何计算？",
+  "gold_chunk_id": "k3_0728a783",
+  "page": 9,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "立式绕线机空载运转性能试验的时间要求是什么？",
+  "gold_chunk_id": "k3_0728a783",
+  "page": 9,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备的标准适用范围包括哪些设备？",
+  "gold_chunk_id": "k3_1331e8be",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "硅钢片横剪生产线的检测方法依据什么标准？",
+  "gold_chunk_id": "k3_1331e8be",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压法真空干燥设备的专用检测方法在哪个文件中描述？",
+  "gold_chunk_id": "k3_1331e8be",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备空载运转性能试验时间要求不少于多少小时？",
+  "gold_chunk_id": "k3_175bc8cb",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "硅钢片剪切精度检测中毛刺的测量工具是什么？",
+  "gold_chunk_id": "k3_175bc8cb",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T27743—2025标准中负荷运转性能试验的检测项目有哪些？",
+  "gold_chunk_id": "k3_175bc8cb",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "这份标准的起草单位有哪些？",
+  "gold_chunk_id": "k3_24e85f2f",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "哪些企业参与了该电力变压器标准的制定？",
+  "gold_chunk_id": "k3_24e85f2f",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "中节能西安启源机电装备有限公司是哪个标准的起草单位？",
+  "gold_chunk_id": "k3_24e85f2f",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备的工作条件有哪些？",
+  "gold_chunk_id": "k3_2f487d32",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备电源电压允许波动范围是多少？",
+  "gold_chunk_id": "k3_2f487d32",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备进行工作条件检测时需要检测哪些项目？",
+  "gold_chunk_id": "k3_2f487d32",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "真空系统漏率如何计算？",
+  "gold_chunk_id": "k3_693ac8c2",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "温度传感器距罐壁或加热排管的最小距离是多少？",
+  "gold_chunk_id": "k3_693ac8c2",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "紧急抽空启动功能检测时充入空气至多少kPa？",
+  "gold_chunk_id": "k3_693ac8c2",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备检测方法的最新标准号是什么？",
+  "gold_chunk_id": "k3_7caff1e7",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T 27743-2011与旧版相比有哪些技术变化？",
+  "gold_chunk_id": "k3_7caff1e7",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "硅钢片横剪生产线专用检测方法有哪些要求？",
+  "gold_chunk_id": "k3_7caff1e7",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "开卷机卷筒直径怎么检测？",
+  "gold_chunk_id": "k3_7d60c96b",
+  "page": 7,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "送料辊与基准侧导轨垂直度误差如何测量？",
+  "gold_chunk_id": "k3_7d60c96b",
+  "page": 7,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "冲床滑台直线导轨与水平面的平行度误差用什么工具检测？",
+  "gold_chunk_id": "k3_7d60c96b",
+  "page": 7,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "加工与装配质量检测中焊缝表面形状尺寸用什么工具检测？",
+  "gold_chunk_id": "k3_8d01c301",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "可凝性气体水平管道安装坡度如何测量？",
+  "gold_chunk_id": "k3_8d01c301",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "卧式罐法兰密封面垂直度检测方法是什么？",
+  "gold_chunk_id": "k3_8d01c301",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "花盘传动系统的装配质量检测项目有哪些？",
+  "gold_chunk_id": "k3_a42e341f",
+  "page": 10,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "卧式绕线机空载运转性能试验的时间要求是什么？",
+  "gold_chunk_id": "k3_a42e341f",
+  "page": 10,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "负载运转性能试验的目的是什么？",
+  "gold_chunk_id": "k3_a42e341f",
+  "page": 10,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "电气控制系统检测的项目和方法是什么？",
+  "gold_chunk_id": "k3_ae02f594",
+  "page": 14,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "气相干燥设备功率试验包括哪些内容？",
+  "gold_chunk_id": "k3_ae02f594",
+  "page": 14,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "主冷凝器冷凝功率试验如何操作？",
+  "gold_chunk_id": "k3_ae02f594",
+  "page": 14,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "液压油温升如何检测？",
+  "gold_chunk_id": "k3_c6e99146",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "加热器泄漏检查时导热油和蒸汽的试验压力各是多少？",
+  "gold_chunk_id": "k3_c6e99146",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "干燥罐极限压力值的稳定判定标准是什么？",
+  "gold_chunk_id": "k3_c6e99146",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "绝缘电阻测量时使用什么规格的绝缘电阻表？",
+  "gold_chunk_id": "k3_cbc69a71",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "接地电阻测量在什么之间进行？",
+  "gold_chunk_id": "k3_cbc69a71",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "噪声检测时测量点距设备周边水平距离是多少？",
+  "gold_chunk_id": "k3_cbc69a71",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "干燥罐漏率如何计算？",
+  "gold_chunk_id": "k3_cc9074d9",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T27743标准中干燥罐漏率检测步骤是什么？",
+  "gold_chunk_id": "k3_cc9074d9",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "干燥罐漏率公式中ΔP和时间间隔怎么取？",
+  "gold_chunk_id": "k3_cc9074d9",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "液压系统检测项目有哪些？",
+  "gold_chunk_id": "k3_d9547b6a",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "硅钢片纵剪生产线空载运转性能试验时间不少于多少小时？",
+  "gold_chunk_id": "k3_d9547b6a",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "负载运转性能试验前需要完成什么试验？",
+  "gold_chunk_id": "k3_d9547b6a",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "剪床下刀面与冲床下刀面等高误差用什么工具检测？",
+  "gold_chunk_id": "k3_df203265",
+  "page": 7,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "各调宽丝杠与冲床滑台导轨平行度误差如何测量？",
+  "gold_chunk_id": "k3_df203265",
+  "page": 7,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "剪床上下刀间隙的检测方法是什么？",
+  "gold_chunk_id": "k3_df203265",
+  "page": 7,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "如何检测主轴孔径向圆跳动误差？",
+  "gold_chunk_id": "k3_e3c14cb3",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "液压油温升用什么工具测量？",
+  "gold_chunk_id": "k3_e3c14cb3",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "箔式线圈绕制机空载运转性能试验要求是什么？",
+  "gold_chunk_id": "k3_e3c14cb3",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "硅钢片剪切毛刺的检测方法是什么？",
+  "gold_chunk_id": "k3_e457e45c",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "剪切精度检测包括哪些具体项目？",
+  "gold_chunk_id": "k3_e457e45c",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T 27743—2025中两刀轴平行度误差如何测量？",
+  "gold_chunk_id": "k3_e457e45c",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T27743—2025的起草人有哪些？",
+  "gold_chunk_id": "k3_f79555d4",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "这个标准文件首次发布于哪一年？",
+  "gold_chunk_id": "k3_f79555d4",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T27743—2025相对于2011版做了哪些修订？",
+  "gold_chunk_id": "k3_f79555d4",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "箔带开卷机卷筒直径怎么测量？",
+  "gold_chunk_id": "k3_fb97067a",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "主机部分质量检测中平行度如何检测？",
+  "gold_chunk_id": "k3_fb97067a",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "纠偏精度用什么工具检测？",
+  "gold_chunk_id": "k3_fb97067a",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "油样采集后应在多久内完成检测？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "从充油设备取油样的标准是什么？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "样品运输存储时要注意啥？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "游离气体取样遵循哪个规程？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "氮气的纯度要求是多少？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "气样检测时间上有什么要求？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "取样后放几天再检测行不行？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 7597 和 DL/T 722 分别是干啥用的？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "如果油样在运输中没避光会有什么影响？",
+  "gold_chunk_id": "k1_1af7b4cd",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "注射器用橡胶封帽有什么要求？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "橡胶封帽需要和什么匹配，有什么性能要求？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "那个封帽是不是要弹性好不漏气？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "什么是顶空进样瓶？它的规格和配件是什么？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "压盖器是干嘛用的？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "标准混合气体应该用什么？组分和浓度范围有要求吗？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "表1里氢气浓度范围是多少？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "怎么检查玻璃注射器的气密性？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "顶空进样瓶的刻度怎么校正？要校正哪些刻度？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "表4中油中气体组分最小检测浓度是多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "氢气、烃类气等气体的最低检出限分别是多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "油里气体最少能测到多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "最小检测浓度（MDC）在表4中如何规定？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623里各组分的MDL是多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "变压器油中氢气浓度很低时，检测限是多少？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "氢气最小检测浓度",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "烃类气的最小检测浓度是0.1μL/L吗？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "重复性测试时，两次测定值之差怎么算？",
+  "gold_chunk_id": "k1_2a10a664",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "B.3.6和B.3.7中如何计算标油中气体组分浓度？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "标油中i气体浓度怎么算，公式是什么？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "做完色谱分析后，怎么算出标油里各气体的含量啊？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "请解释式(B.2)中x'is、Cis、Cig、V'g、V'l各符号的含义。",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "标油配制的浓度计算公式中0.929代表什么？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "如果实验室气压不是101.3kPa，标油浓度需要怎么修正？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623里标油浓度计算时，气体体积和油体积分别用什么单位？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "恒温振荡后实测气相浓度偏高，对标油浓度计算结果有什么影响？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "B.3.7公式中V'g和V'l是在什么温度下的体积？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623-2026 由哪个机构提出？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "这份标准是哪个标委会归口管理的？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "17623这个标准的最新版是哪一年发布的？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623 的归口单位是什么？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "这次修订是第几次修订？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "如果变压器油色谱检测结果异常，需要查这份标准，它的起草单位有哪些？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "1998年首次发布的标准代号是什么？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623—2026 代替了哪个旧版本？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "标准起草人里有没有西安交通大学的专家？",
+  "gold_chunk_id": "k1_32637387",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "试油分析要做几次？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "油样检测需要重复测定几次？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "这个试验油样得测几遍啊？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "D.3.2.4中规定的重复测定次数是多少？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "试油分析两次，那精密度按什么标准来？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "如果两次分析结果偏差太大，怎么处理？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "两次分析的精密度要求是什么？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "做油试验，要重复做几次才合规？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "试油分析两次后，精密度要满足哪一章的要求？",
+  "gold_chunk_id": "k1_358cea63",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "加平衡气时，注射器C需要清洗几次？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "平衡气注入速度有什么要求？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "往注射器B里加气的时候，针尖在油里冒泡要啥样？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "振荡平衡后气相体积不能超过多少毫升？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "测定氮气组分时，平衡气应该用什么？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "矿物绝缘油和合成酯绝缘油的振荡时间分别是多少？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "室温低于10℃时，振荡前需要做什么处理？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "转移平衡气时，采用什么方法？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "注射器A在室温下放置多久后读取体积？",
+  "gold_chunk_id": "k1_3f194ce1",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623-2026相比2017版的主要技术变化有哪些？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "新版标准中增加了哪种检测器的相关内容？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "这个标准是干什么用的？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "新标准里样品采集部分有什么改动？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623-2026代替了哪个旧标准？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "天然酯和合成酯绝缘油的检测内容是新增的吗？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "试验结果部分现在是怎么划分的？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "旧版里的水银真空脱气法附录在新版中怎么处理了？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "新版标准中标准混合气体的典型值范围在哪里规定的？",
+  "gold_chunk_id": "k1_41daac4d",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "50℃时国产矿物绝缘油中氢气的奥斯特瓦尔德系数是多少？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "合成酯绝缘油在50度下各气体的奥斯特瓦尔德系数分别是多少？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "天然酯绝缘油（大豆基）的奥斯特瓦尔德系数和菜籽基的有啥区别？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "奥斯特瓦尔德系数Ki在真空取气法里怎么用？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "GB/T 17623里表3给出的是多少度下的Ki值？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "国产矿物油和合成酯油对乙炔的溶解系数差多少？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "做油中溶解气体分析时，怎么校正气体体积到20℃、101.3kPa？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "真空取气法结果计算中，样品气和油样体积校正公式是什么？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "变压器油检测时，表3里的Ki值能直接用吗？",
+  "gold_chunk_id": "k1_4bda7324",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "油中溶解气体浓度怎么通过气相测定值算出来？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "顶空取气法和真空取气法有啥区别？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "分配系数Ki在公式里代表什么？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "真空取气时为什么要喷淋、搅拌、加热？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 0,
+  "source": "train-query"
+ },
+ {
+  "question": "算油中气体浓度时，Vg和Vl分别指什么？",
+  "gold_chunk_id": "k1_50a474a2",
+  "page": 0,
+  "source": "train-query"
+ }
+]
