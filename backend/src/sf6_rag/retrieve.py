@@ -14,7 +14,7 @@ import threading
 # 路径常量（Qdrant 数据 + BGE-M3 模型）
 _BASE = Path(r"C:\Users\lizhihao\w2-knowledge-assistant")
 _QDRANT_DIR = _BASE / "data" / "qdrant"
-_BGE = r"C:\Users\lizhihao\.cache\huggingface\hub\models--BAAI--bge-m3\snapshots\5617a9f61b028005a4858fdac845db406aefb181"
+_BGE = os.environ.get("BGE_MODEL_PATH", r"C:\Users\lizhihao\.cache\huggingface\hub\models--BAAI--bge-m3\snapshots\5617a9f61b028005a4858fdac845db406aefb181")  # 环境变量切换微调模型(默认原模型=可回滚)
 _COLLECTION = "transformer_kb_v1"
 _UPLOAD_COLLECTION_PREFIX = "transformer_upload_"
 _RRF_K = 60
@@ -26,8 +26,8 @@ TOKEN_BUCKETS = ["0-100", "101-300", "301-512", "513+"]
 # sparse：精确词命中度（标准号类）。标准号库内题 sparse 0.140~0.192，库外题 0.002~0.127，
 #         阈值 0.13 切开精确词题。
 # 判定：dense 高分 或 sparse 高分 任一满足即放行（互补——dense 善语义、sparse 善精确词）。
-REJECT_DENSE_THRESHOLD = 0.55
-REJECT_SPARSE_THRESHOLD = 0.13
+REJECT_DENSE_THRESHOLD = 0.445  # 微调模型校准(原0.55): 库内min0.485 vs 库外max0.406
+REJECT_SPARSE_THRESHOLD = 0.20  # 微调模型校准(原0.13): 库外max0.173
 
 # 懒加载单例（模型加载慢，进程内复用）
 _model = None
