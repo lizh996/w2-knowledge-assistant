@@ -39,7 +39,7 @@ from sf6_rag.generate import FALLBACK_TEXT, format_citation  # noqa: E402
 from sf6_rag.auth import login, get_current_user, verify_token, User  # noqa: E402
 from sf6_rag import pipeline  # noqa: E402
 
-app = FastAPI(title="SF6 知识库问答", version="1.0.0")
+app = FastAPI(title="变压器检测维护知识库问答", version="1.0.0")
 
 # CORS：允许前端页面跨域调用 /ask
 app.add_middleware(
@@ -399,7 +399,7 @@ def index():
     html = _FRONTEND / "index.html"
     if html.exists():
         return html.read_text(encoding="utf-8")
-    return "<h1>SF6 知识库问答</h1><p>前端页面未找到</p>"
+    return "<h1>变压器检测维护知识库问答</h1><p>前端页面未找到</p>"
 
 
 @app.get("/login", response_class=HTMLResponse)
