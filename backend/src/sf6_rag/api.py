@@ -711,8 +711,10 @@ def ask(req: AskRequest, user: User = Depends(_require_auth)):
         )
 
     # 查询改写（召回前，可选）：口语 query → 规范术语 query（对齐 Q2Q 索引侧 question_kwd）
+    # 检索用 reject_question（含多轮追问拼接的上文语境），避免裸追问句如"那检测结果如何判定？"
+    # 丢失"油色谱/气相色谱"主题词后检索漂移到无关文档（46131 判据章）——问题15修正后再现问题
     rewrite_start = time.time()
-    search_query = _rewrite_query(question)
+    search_query = _rewrite_query(reject_question)
     steps.append(_step(
         "query_rewrite",
         "查询改写",
