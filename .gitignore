@@ -5,6 +5,7 @@ __pycache__/
 
 # 数据与模型（大文件不入库）
 data/qdrant/
+data/qdrant_bak*/
 data/chroma/
 data/models/
 data/uploads/
