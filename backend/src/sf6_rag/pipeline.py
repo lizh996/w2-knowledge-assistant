@@ -237,9 +237,46 @@ def list_tasks() -> list[dict[str, Any]]:
     return [_row_to_task(row) for row in rows]
 
 
+BUILTIN_DOCS = [
+    {
+        "id": "gb_t_17623_2026",
+        "name": "GB/T 17623-2026 绝缘油中溶解气体组分含量的气相色谱测定法",
+        "status": "done",
+        "collection": "transformer_kb_v1",
+        "chunk_count": 33,
+        "extract_mode": "fitz",
+        "created_at": None,
+        "error": None,
+        "builtin": True,
+    },
+    {
+        "id": "gb_t_25438_2026",
+        "name": "GB/T 25438-2026 三相油浸式立体卷铁芯电力变压器 技术参数和要求",
+        "status": "done",
+        "collection": "transformer_kb_v1",
+        "chunk_count": 35,
+        "extract_mode": "fitz",
+        "created_at": None,
+        "error": None,
+        "builtin": True,
+    },
+    {
+        "id": "gb_t_27743_2025",
+        "name": "GB/T 27743-2025 变压器专用设备检测方法",
+        "status": "done",
+        "collection": "transformer_kb_v1",
+        "chunk_count": 20,
+        "extract_mode": "fitz",
+        "created_at": None,
+        "error": None,
+        "builtin": True,
+    },
+]
+
+
 def list_documents() -> list[dict[str, Any]]:
-    # 内置文档走上传集合（不再硬编码 SF6 旧条目）
-    docs = []
+    # 内置知识（transformer_kb_v1 预置 3 份国标）+ 后续上传任务
+    docs = [dict(d) for d in BUILTIN_DOCS]
     for task in list_tasks():
         result = task.get("result") or {}
         docs.append(
