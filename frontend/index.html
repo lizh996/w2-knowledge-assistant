@@ -1221,7 +1221,7 @@
         <div class="chat-inner" id="chatHistory">
           <div class="welcome">
             <h2>今天要查哪条标准依据？</h2>
-            <p>可以直接询问 变压器 检测指标、密封试验、回收流程、标准条款或上传文档里的内容。</p>
+            <p>可以直接询问 变压器油检测、气体取样、重复性要求、额定容量或标准条款。</p>
           </div>
         </div>
       </section>
@@ -1229,7 +1229,7 @@
       <section class="composer-wrap">
         <div class="composer">
           <div class="composer-box">
-            <textarea id="question" placeholder="询问 变压器 标准、检测指标、回收流程或页码依据"></textarea>
+            <textarea id="question" placeholder="询问 变压器油检测、取样要求或标准条款（带页码）"></textarea>
             <button id="askBtn" onclick="ask()" aria-label="发送问题">→</button>
           </div>
           <div class="composer-meta">
@@ -1444,10 +1444,10 @@
     function renderRefusal() {
       return `<div class="refuse-title">知识库依据不足</div>
         <div>当前知识库未找到足够标准依据，系统已停止生成无依据答案。</div>
-        <div class="suggestions">建议改问标准编号、检测指标、回收流程或页码类问题。例如：<br>
-        GB/T 44653-2024 中 变压器 气体回收率要求是多少？<br>
-        变压器 现场检测有哪些指标？<br>
-        变压器 循环再利用的流程步骤是什么？</div>`;
+        <div class="suggestions">建议改问库内标准内容类问题。例如：<br>
+            变压器油气相色谱法检测哪些气体组分？<br>
+            绝缘油中溶解气体取样有什么要求？<br>
+            气相色谱测定法的重复性要求？</div>`;
     }
 
     function formatMs(ms) {
@@ -1584,7 +1584,7 @@
       if (!chatHistory.length) {
         box.innerHTML = `<div class="welcome">
           <h2>今天要查哪条标准依据？</h2>
-          <p>可以直接询问 变压器 检测指标、密封试验、回收流程、标准条款或上传文档里的内容。</p>
+          <p>可以直接询问 变压器油检测、气体取样、重复性要求、额定容量或标准条款。</p>
         </div>`;
         return;
       }
