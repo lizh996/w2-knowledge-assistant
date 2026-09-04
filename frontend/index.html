@@ -1686,6 +1686,11 @@
       const loading = document.getElementById('loading');
       if (btn.disabled) return;
 
+      // 多轮历史：只含之前轮次（不含本次），传给后端拼接追问
+      const history = chatHistory
+        .filter(m => !m.loading && m.content)
+        .slice(-6)
+        .map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.content }));
       chatHistory.push({ role: 'user', content: question });
       const pendingMessage = {
         role: 'assistant',
@@ -1712,7 +1717,7 @@
         const resp = await fetch(API_BASE + '/ask', {
           method: 'POST',
           headers: { ...authHeaders(), 'Content-Type': 'application/json' },
-          body: JSON.stringify({ question })
+          body: JSON.stringify({ question, history })
         });
         if (resp.status === 401) { logout(); return; }
         if (!resp.ok) throw new Error(await readErrorDetail(resp));
