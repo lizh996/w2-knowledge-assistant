@@ -238,41 +238,8 @@ def list_tasks() -> list[dict[str, Any]]:
 
 
 def list_documents() -> list[dict[str, Any]]:
-    docs = [
-        {
-            "id": "gb_t_44653_2024",
-            "name": "GB/T 44653-2024 六氟化硫气体现场循环再利用导则",
-            "status": "done",
-            "collection": "device_knowledge_v8",
-            "chunk_count": 22,
-            "extract_mode": "mineru",
-            "created_at": None,
-            "error": None,
-            "builtin": True,
-        },
-        {
-            "id": "gb_t_12022_2025",
-            "name": "GB/T 12022-2025 工业六氟化硫",
-            "status": "done",
-            "collection": "device_knowledge_v8",
-            "chunk_count": 43,
-            "extract_mode": "mineru",
-            "created_at": None,
-            "error": None,
-            "builtin": True,
-        },
-        {
-            "id": "gb_t_18867_2025",
-            "name": "GB/T 18867-2025 电子工业用气体 六氟化硫",
-            "status": "done",
-            "collection": "device_knowledge_v8",
-            "chunk_count": 20,
-            "extract_mode": "mineru",
-            "created_at": None,
-            "error": None,
-            "builtin": True,
-        },
-    ]
+    # 内置文档走上传集合（不再硬编码 SF6 旧条目）
+    docs = []
     for task in list_tasks():
         result = task.get("result") or {}
         docs.append(
