@@ -26,8 +26,8 @@ TOKEN_BUCKETS = ["0-100", "101-300", "301-512", "513+"]
 # sparse：精确词命中度（标准号类）。标准号库内题 sparse 0.140~0.192，库外题 0.002~0.127，
 #         阈值 0.13 切开精确词题。
 # 判定：dense 高分 或 sparse 高分 任一满足即放行（互补——dense 善语义、sparse 善精确词）。
-REJECT_DENSE_THRESHOLD = 0.445  # 微调模型校准(原0.55): 库内min0.485 vs 库外max0.406
-REJECT_SPARSE_THRESHOLD = 0.20  # 微调模型校准(原0.13): 库外max0.173
+REJECT_DENSE_THRESHOLD = 0.42  # FT空间再校准(原0.445): 实测库内13题min0.4227(标准号孤立题) vs 硬OOD 11题max0.4183
+REJECT_SPARSE_THRESHOLD = 3.0  # 再校准(原1.5): 数字/天气类OOD稀疏命中条款编号可达1.9且不稳定, 库内题dense均>=0.42不走稀疏; 稀疏通道仅作极强标准号命中防御
 
 # 懒加载单例（模型加载慢，进程内复用）
 _model = None
