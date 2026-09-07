@@ -232,9 +232,11 @@ def _query_channel_collections(client, collections: list[str], query_vec, using:
 
 
 def retrieve(query: str, top_k: int = 5) -> list[dict]:
-    """复合检索：BGE-M3 编码 query → Qdrant FusionQuery(RRF) dense+sparse 融合。
+    """复合检索（修复版）：BGE-M3 编码 → 每集合 dense+sparse 双路召回并集（防漏），
+    最终排序用 dense 余弦相似度（绝对可比）——修复多集合场景两层 RRF 相对排名
+    导致上传大集合弱相关块淹没内置真答案的失衡（问题17）。
 
-    返回 list[dict]，每项含 score（RRF 分）/ section / page / content / source。
+    返回 list[dict]，每项含 score（dense 余弦分）/ rrf_score（参考）/ section / page / content / source。
     """
     model = _get_model()
     client = _get_client()
@@ -248,8 +250,47 @@ def retrieve(query: str, top_k: int = 5) -> list[dict]:
     dense_vec = out["dense_vecs"][0].tolist()
     sparse_vec = _to_sparse_vector(out["lexical_weights"][0])
 
-    ranked = _query_rrf_collections(client, collections, dense_vec, sparse_vec, top_k)
-    return _fuse_ranked_hits(ranked, top_k)
+    return _retrieve_dense_first(client, collections, dense_vec, sparse_vec, top_k)
+
+
+def _retrieve_dense_first(client, collections, dense_vec, sparse_vec, top_k: int) -> list[dict]:
+    """每集合 dense+sparse 各取 pool 条并集 → 按 dense 余弦分全局排序取 top_k。
+    dense 分跨集合绝对可比；sparse 负责把 dense 漏的精确词块拉进候选池。"""
+    pool = max(top_k * 3, 15)
+    candidates: dict[str, dict] = {}
+    for collection in collections:
+        try:
+            rd = client.query_points(collection_name=collection, query=dense_vec,
+                                     using="dense", limit=pool)
+            rs = client.query_points(collection_name=collection, query=sparse_vec,
+                                     using="sparse", limit=pool)
+        except Exception:
+            if collection == _COLLECTION:
+                raise
+            continue
+        for resp, is_dense in ((rd, True), (rs, False)):
+            for hit in resp.points:
+                pl = getattr(hit, "payload", None) or {}
+                key = f"{collection}:{hit.id}"
+                if key not in candidates:
+                    item = _format_hit(hit, "score", collection=collection)
+                    item["score"] = 0.0
+                    item["dense_score"] = float(hit.score) if is_dense else 0.0
+                    item["sparse_score"] = float(hit.score) if not is_dense else 0.0
+                    item["rrf_score"] = 0.0
+                    item["collection"] = collection
+                    candidates[key] = item
+                else:
+                    if is_dense:
+                        candidates[key]["dense_score"] = max(candidates[key]["dense_score"], float(hit.score))
+                    else:
+                        candidates[key]["sparse_score"] = max(candidates[key]["sparse_score"], float(hit.score))
+    items = list(candidates.values())
+    for it in items:
+        it["score"] = it["dense_score"]  # 排序分 = dense 余弦（绝对可比）
+    # 排序：dense 分主序；dense 分接近时 sparse 分辅助
+    items.sort(key=lambda x: (-x["dense_score"], -x["sparse_score"]))
+    return items[:top_k]
 
 
 _RERANKER_PATH = r"D:\models\bge-reranker-v2-m3"

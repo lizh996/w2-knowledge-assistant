@@ -782,6 +782,13 @@ def ask(req: AskRequest, user: User = Depends(_require_auth)):
         pairs = [(question, c["content"]) for c in candidates]
         scores = reranker.compute_score(pairs, batch_size=8)
         order = sorted(range(len(candidates)), key=lambda i: -float(scores[i]))
+        # dense 高分保底：修复版粗排(hybrid+dense排序)的 top2 强制保住，
+        # 防 reranker 把强语义真答案挤出前5（问题17 修复后 V3 回归验证）
+        dense_order = sorted(range(len(candidates)),
+                             key=lambda i: -(float(candidates[i].get("dense_score") or 0)))
+        protected = [i for i in dense_order[:2] if i not in order[:2]]
+        if protected:
+            order = protected + [i for i in order if i not in protected]
         reranked = [candidates[i] for i in order]
         rerank_scores = [float(scores[i]) for i in order]
     steps.append(_step(
