@@ -34,6 +34,7 @@ from sf6_rag.retrieve import (  # noqa: E402
     retrieve,
     retrieve_debug,
     sparse_similarity,
+    similarity_pair,
 )
 from sf6_rag.generate import FALLBACK_TEXT, format_citation  # noqa: E402
 from sf6_rag.auth import login, get_current_user, verify_token, User  # noqa: E402
@@ -648,16 +649,24 @@ def ask(req: AskRequest, user: User = Depends(_require_auth)):
                     reject_question = f"{prev} {question}"
                 break
     dense_start = time.time()
-    dense_score = dense_similarity(reject_question)
-    dense_elapsed = _ms(dense_start)
-    sparse_score = None
-    sparse_elapsed = 0
-    passed = dense_score >= REJECT_DENSE_THRESHOLD
-    if not passed:
-        sparse_start = time.time()
-        sparse_score = sparse_similarity(question)
-        sparse_elapsed = _ms(sparse_start)
-        passed = sparse_score >= REJECT_SPARSE_THRESHOLD
+    if reject_question == question:
+        # 无拼接：一次编码同时拿 dense/sparse 双通道分（省一次模型前向，拒答快一倍）
+        dense_score, sparse_score = similarity_pair(question)
+        dense_elapsed = _ms(dense_start)
+        sparse_elapsed = 0
+        passed = dense_score >= REJECT_DENSE_THRESHOLD or sparse_score >= REJECT_SPARSE_THRESHOLD
+    else:
+        # 拼接场景：dense 用拼接句（语义需语境），sparse 用裸句（精确词在当前句）
+        dense_score = dense_similarity(reject_question)
+        dense_elapsed = _ms(dense_start)
+        sparse_score = None
+        sparse_elapsed = 0
+        passed = dense_score >= REJECT_DENSE_THRESHOLD
+        if not passed:
+            sparse_start = time.time()
+            sparse_score = sparse_similarity(question)
+            sparse_elapsed = _ms(sparse_start)
+            passed = sparse_score >= REJECT_SPARSE_THRESHOLD
 
     reject_elapsed = dense_elapsed + sparse_elapsed
     steps.append(_step(

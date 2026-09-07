@@ -345,12 +345,48 @@ def _format_hit(hit, score_name: str, *, collection: str = "") -> dict:
     }
 
 
+_encode_cache: dict[str, tuple] = {}
+_ENCODE_CACHE_MAX = 128
+
+
 def _encode_query(query: str):
-    """编码 query，返回 (dense_vec, sparse_vec)。"""
+    """编码 query，返回 (dense_vec, sparse_vec)。LRU 缓存避免重复前向。"""
+    hit = _encode_cache.get(query)
+    if hit is not None:
+        return hit
     model = _get_model()
     out = model.encode([query], return_dense=True, return_sparse=True,
                        return_colbert_vecs=False, batch_size=1)
-    return out["dense_vecs"][0].tolist(), _to_sparse_vector(out["lexical_weights"][0])
+    vec = (out["dense_vecs"][0].tolist(), _to_sparse_vector(out["lexical_weights"][0]))
+    if len(_encode_cache) >= _ENCODE_CACHE_MAX:
+        _encode_cache.pop(next(iter(_encode_cache)))
+    _encode_cache[query] = vec
+    return vec
+
+
+def similarity_pair(query: str) -> tuple[float, float]:
+    """一次编码同时算 dense/sparse top1 最高分（拒答判断用，省一次模型前向）。"""
+    client = _get_client()
+    dense_vec, sparse_vec = _encode_query(query)
+    d_scores, s_scores = [], []
+    for collection in search_collection_names(client):
+        try:
+            rd = client.query_points(collection_name=collection, query=dense_vec,
+                                     using="dense", limit=1)
+            if rd.points:
+                d_scores.append(float(rd.points[0].score))
+        except Exception:
+            if collection == _COLLECTION:
+                raise
+        try:
+            rs = client.query_points(collection_name=collection, query=sparse_vec,
+                                     using="sparse", limit=1)
+            if rs.points:
+                s_scores.append(float(rs.points[0].score))
+        except Exception:
+            if collection == _COLLECTION:
+                raise
+    return max(d_scores, default=0.0), max(s_scores, default=0.0)
 
 
 def dense_similarity(query: str) -> float:
