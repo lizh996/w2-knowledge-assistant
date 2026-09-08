@@ -61,7 +61,11 @@ def v3_rerank(query):
 with open(r"C:\\Users\\lizhihao\\w2-knowledge-assistant\\eval\\retrieval_set.json", encoding="utf-8") as f:
     R = json.load(f)
 
-for ver, fn in [("V1(dense)", v1_dense), ("V2(RRF)", v2_rrf), ("V3(+rerank)", v3_rerank)]:
+import sys as _sys
+_versions = _sys.argv[1:] if len(_sys.argv) > 1 else ["V1", "V2", "V3"]
+_MAP = {"V1": ("V1(dense)", v1_dense), "V2": ("V2(RRF)", v2_rrf), "V3": ("V3(+rerank)", v3_rerank)}
+for _v in _versions:
+    ver, fn = _MAP[_v]
     hits = 0; rr_sum = 0.0
     print(f"\\n===== {ver} =====")
     for i, it in enumerate(R, 1):
