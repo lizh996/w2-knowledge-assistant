@@ -1,0 +1,122 @@
+[
+ {
+  "question": "配电变压器相电阻不平衡率允许的最大值是多少？",
+  "gold_chunk_id": "k2_2a31e3b1",
+  "page": 14,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "GB/T 27743—2025中两刀轴平行度误差如何测量？",
+  "gold_chunk_id": "k3_e457e45c",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "接地电阻测量在什么之间进行？",
+  "gold_chunk_id": "k3_cbc69a71",
+  "page": 6,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T25438-2026中关于箱底支架位置的规定是什么？",
+  "gold_chunk_id": "k2_cb596f70",
+  "page": 31,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "顶空进样瓶的容量和垫片要求是什么？",
+  "gold_chunk_id": "k1_2050601e",
+  "page": 9,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "紧急抽空启动功能检测时充入空气至多少kPa？",
+  "gold_chunk_id": "k3_693ac8c2",
+  "page": 13,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "干燥罐漏率公式中ΔP和时间间隔怎么取？",
+  "gold_chunk_id": "k3_cc9074d9",
+  "page": 12,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "GB/T 27743-2011与旧版相比有哪些技术变化？",
+  "gold_chunk_id": "k3_7caff1e7",
+  "page": 3,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "如何计算标油中气体组分的浓度？",
+  "gold_chunk_id": "k1_30cb40e0",
+  "page": 19,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "有载分接开关装入变压器后油室密封试验有什么要求？",
+  "gold_chunk_id": "k2_4753058d",
+  "page": 15,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "气相干燥设备功率试验包括哪些内容？",
+  "gold_chunk_id": "k3_ae02f594",
+  "page": 14,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "回收率怎么计算？",
+  "gold_chunk_id": "k1_90d29c6f",
+  "page": 20,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "纠偏精度用什么工具检测？",
+  "gold_chunk_id": "k3_fb97067a",
+  "page": 11,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器专用设备进行工作条件检测时需要检测哪些项目？",
+  "gold_chunk_id": "k3_2f487d32",
+  "page": 5,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "变压器气体继电器的接点容量要求是什么？",
+  "gold_chunk_id": "k2_e9a5a20f",
+  "page": 20,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油气分离装置有哪些类型？",
+  "gold_chunk_id": "k1_ede71d68",
+  "page": 8,
+  "source": "GB_T_17623-2026.pdf"
+ },
+ {
+  "question": "变压器运输和起吊标志有什么要求？",
+  "gold_chunk_id": "k2_40a8e782",
+  "page": 33,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "硅钢片纵剪生产线空载运转性能试验时间不少于多少小时？",
+  "gold_chunk_id": "k3_d9547b6a",
+  "page": 8,
+  "source": "GB_T_27743-2025.pdf"
+ },
+ {
+  "question": "800kVA及以上变压器是否应装有气体继电器？",
+  "gold_chunk_id": "k2_58ff619b",
+  "page": 13,
+  "source": "GB_T_25438-2026.pdf"
+ },
+ {
+  "question": "油浸式非晶合金铁心配电变压器的技术参数参考哪个标准？",
+  "gold_chunk_id": "k2_fef36bff",
+  "page": 7,
+  "source": "GB_T_25438-2026.pdf"
+ }
+]
