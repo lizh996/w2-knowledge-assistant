@@ -23,5 +23,8 @@ output/
 # 工具产物
 *.log
 
+# 微调评测：模型合并产物（幂等重建，大文件不入库）
+finetune/merged_ft_v1/
+
 # 密钥
 .env

@@ -1,0 +1,27 @@
+{
+ "clean_n": 264,
+ "chunks": 88,
+ "rrf_k": 60,
+ "results": {
+  "base": {
+   "dense_recall@10": 0.9583,
+   "sparse_recall@10": 0.9811,
+   "fusion_recall@10": 0.9773,
+   "hits": {
+    "dense": 253,
+    "sparse": 259,
+    "fusion": 258
+   }
+  },
+  "ft": {
+   "dense_recall@10": 0.9697,
+   "sparse_recall@10": 0.9848,
+   "fusion_recall@10": 0.9773,
+   "hits": {
+    "dense": 256,
+    "sparse": 260,
+    "fusion": 258
+   }
+  }
+ }
+}

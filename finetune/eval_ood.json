@@ -1,0 +1,122 @@
+[
+ {
+  "gold_chunk_id": "k1_32637387",
+  "original": "GB/T17623—2026由哪个标准化技术委员会归口？",
+  "variant": "GB/T17623-2026归哪个标委会管？",
+  "ood_type": "newterm"
+ },
+ {
+  "gold_chunk_id": "k1_32637387",
+  "original": "GB/T17623—2026的起草单位有哪些？",
+  "variant": "GB/T17623-2026是哪些单位一块起草的？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_358cea63",
+  "original": "试油分析需要分析几次？",
+  "variant": "试油分析得做几遍？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_358cea63",
+  "original": "试油分析的精密度应满足什么要求？",
+  "variant": "试油分析的精密度有啥要求？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_6a331b49",
+  "original": "分配系数测定时振荡和静置时间分别是多少？",
+  "variant": "测分配系数时振荡和静置各要多久？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_6d060947",
+  "original": "如何用二次溶解平衡法测定气体分配系数？",
+  "variant": "二次溶解平衡法怎么测气体分配系数？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_90d29c6f",
+  "original": "标油中气体组分实测浓度如何测定？",
+  "variant": "标油里气体组分实测浓度咋测？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_ba8348ee",
+  "original": "如何计算50℃下平衡气的体积？",
+  "variant": "50℃下平衡气体积咋个算？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k1_e4a96047",
+  "original": "测定溶解气体时玻璃注射器的气密性要求是什么？",
+  "variant": "测溶解气体时玻璃注射器气密性有啥要求？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k2_0595d260",
+  "original": "35kV变压器分接范围调整有哪些具体要求？",
+  "variant": "35千伏变压器分接范围调整有什么具体要求？",
+  "ood_type": "newterm"
+ },
+ {
+  "gold_chunk_id": "k2_2a31e3b1",
+  "original": "配电变压器相电阻不平衡率允许的最大值是多少？",
+  "variant": "配电变压器相电阻不平衡率最大能到多少？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k2_2a31e3b1",
+  "original": "除配电变压器外的电力变压器相电阻不平衡率限值是多少？",
+  "variant": "除配电变压器外，电力变压器相电阻不平衡率限值多少？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k2_36e8f225",
+  "original": "GB/T1.1-2020标准文件的起草规则是什么？",
+  "variant": "GB/T1.1-2020这个标准文件起草有啥规则？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k2_40984f78",
+  "original": "变压器接地处需要设置什么标识？",
+  "variant": "变压器接地的地方要设什么标记？",
+  "ood_type": "typo"
+ },
+ {
+  "gold_chunk_id": "k2_4753058d",
+  "original": "波纹式油箱变压器的压力变形试验压力值是多少？",
+  "variant": "波纹油箱变压器的压力变形试验压力是多少？",
+  "ood_type": "typo"
+ },
+ {
+  "gold_chunk_id": "k2_69a99ec1",
+  "original": "不同温度下测得的直流绝缘电阻值如何换算？",
+  "variant": "不同温度下测到的直流绝缘电阻值怎么换算？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k3_24e85f2f",
+  "original": "哪些企业参与了该电力变压器标准的制定？",
+  "variant": "哪些公司参与了该电力变压器标准的制定？",
+  "ood_type": "newterm"
+ },
+ {
+  "gold_chunk_id": "k3_2f487d32",
+  "original": "变压器专用设备的工作条件有哪些？",
+  "variant": "变压器专用设备的工作条件都有哪些？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k3_8d01c301",
+  "original": "可凝性气体水平管道安装坡度如何测量？",
+  "variant": "可凝性气体水平管道安装坡度怎么量？",
+  "ood_type": "colloquial"
+ },
+ {
+  "gold_chunk_id": "k3_f79555d4",
+  "original": "GB/T27743—2025的起草人有哪些？",
+  "variant": "GB/T27743-2025是谁起草的？",
+  "ood_type": "colloquial"
+ }
+]

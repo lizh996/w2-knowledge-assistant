@@ -1,0 +1,24 @@
+{
+ "ood_n": 20,
+ "type_dist": {
+  "newterm": 3,
+  "colloquial": 15,
+  "typo": 2
+ },
+ "results": {
+  "base": {
+   "recall@5": 0.9,
+   "hits@5": 18,
+   "valid_n": 20
+  },
+  "ft": {
+   "recall@5": 0.95,
+   "hits@5": 19,
+   "valid_n": 20
+  }
+ },
+ "delta": {
+  "recall@5": 0.05
+ },
+ "conclusion": "FT 在 OOD 上不明显退化（差异在单样本噪声内）"
+}

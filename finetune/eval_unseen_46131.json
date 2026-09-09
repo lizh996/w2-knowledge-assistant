@@ -1,0 +1,198 @@
+[
+ {
+  "question": "这个标准的主要起草人都有谁？",
+  "gold_chunk_id": "a7e2d69d-7157-5af8-8ceb-0655fc5a77b0",
+  "page": 5,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "概述"
+ },
+ {
+  "question": "这个标准里提到的分接开关适用范围具体是多大电压等级的变压器？",
+  "gold_chunk_id": "9cd25db3-0777-5184-9612-eb1c23ba20de",
+  "page": 7,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "安全要求"
+ },
+ {
+  "question": "无励磁分接开关和有载分接开关的机械寿命分别是多少次？",
+  "gold_chunk_id": "99d226b5-54cf-5940-a7e7-ddd3f3a806b3",
+  "page": 8,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "参数查询"
+ },
+ {
+  "question": "电动机构在运行条件下进行两个操作循环的电动操作，对故障有什么要求？",
+  "gold_chunk_id": "a9f2c1ba-5164-59cc-9e72-abf1bd94a130",
+  "page": 12,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "安全要求"
+ },
+ {
+  "question": "无励磁分接开关机械寿命试验中，在-40℃油温下需要操作多少次才算合格？",
+  "gold_chunk_id": "9de01cca-caa6-5ecc-8273-f176d1091049",
+  "page": 13,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "全波雷电冲击试验和截波雷电冲击试验在电压施加次数和极性上有什么要求？",
+  "gold_chunk_id": "4ca14eea-0684-57b0-91ea-994aa0686db6",
+  "page": 14,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "温升试验时，如果热电偶和分接开关零件干涉，测温点可以怎么处理？",
+  "gold_chunk_id": "d40fc22a-3f27-5534-b8f0-a01405ebb74f",
+  "page": 14,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "流程步骤"
+ },
+ {
+  "question": "局部放电测量时，如果60分钟内最后20分钟的放电趋势不合格，可以延长观察时间再判定合格吗？",
+  "gold_chunk_id": "a628ecdc-82c9-5ea1-9486-5dfdb6aeefe4",
+  "page": 15,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "有载分接开关的触头在1.2倍最大额定电流下，温升不能超过多少？",
+  "gold_chunk_id": "07f54d75-741b-5a81-b0cb-25eace4d00e8",
+  "page": 17,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "非真空型有载分接开关的切换开关，在最大额定通过电流和相关额定级电压下，电气切换寿命至少要达到多少次？",
+  "gold_chunk_id": "6a2df8fb-ea48-5b0c-a12c-4527e4a89008",
+  "page": 18,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "电动机构箱体在湿热或风沙地区的防护等级要求是什么，和普通地区有什么区别？",
+  "gold_chunk_id": "63c1b1bd-6ac5-5bfa-b382-f3de029cb6a7",
+  "page": 19,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "安全要求"
+ },
+ {
+  "question": "抗震测试做完后，设备基频下降多少算合格？",
+  "gold_chunk_id": "da6166b3-6f1e-521d-9f49-80f0e4d9b6ef",
+  "page": 19,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "安全要求"
+ },
+ {
+  "question": "有载分接开关的油室发生电弧故障时，压力释放阀在什么能量范围内必须动作？",
+  "gold_chunk_id": "e22805ed-94e2-5e81-a5ad-3000a1ed0a28",
+  "page": 19,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "有载分接开关的机械寿命试验属于例行试验还是型式试验？",
+  "gold_chunk_id": "d260d4a6-4cf2-50c4-8588-ff20dd26cbe9",
+  "page": 20,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "安全要求"
+ },
+ {
+  "question": "机械寿命试验中，切换开关和分接选择器在冷热油交替条件下需要操作多少次，油温分别有什么要求？",
+  "gold_chunk_id": "d4e225bb-cb39-5134-bc7f-d8b9eb0847ca",
+  "page": 21,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "油柱正压法做压力试验时，油室内部的压力要达到多少，保持多久？",
+  "gold_chunk_id": "1ebc6cd3-2f9d-52e0-b73c-5bf5d3f6d18c",
+  "page": 22,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "概述"
+ },
+ {
+  "question": "油温测温点离触头最少要隔多远？",
+  "gold_chunk_id": "70426ecb-2eca-5075-8993-4f4000ba2b57",
+  "page": 23,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "油柱负压法试验时，试验油箱压力要达到多少，持续多长时间？",
+  "gold_chunk_id": "e9900295-7ada-5e1d-be0e-4aff48c5ee56",
+  "page": 23,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "特高压变压器做完装配后，有载分接开关在85%额定电压下要操作几个循环？",
+  "gold_chunk_id": "0d85d7e6-93a5-5f43-96b2-d846140c39b4",
+  "page": 27,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "有载分接开关做例行试验时，机械动作试验要求空载运转多少次？",
+  "gold_chunk_id": "46b6fb78-42b9-5ea9-b12f-a53b8497c804",
+  "page": 27,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "电弧能量是怎么算的？公式里每个符号代表啥？",
+  "gold_chunk_id": "9f96e506-4c9e-55a1-932c-7e446a0a7932",
+  "page": 29,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "概述"
+ },
+ {
+  "question": "极性选择器产气特性试验时，如果恢复电压高于35kV，实际要加多高的电压？",
+  "gold_chunk_id": "bf424c6c-1822-5f62-9afe-e1d3594c945d",
+  "page": 30,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "长期贮存有载分接开关时，油箱和切换油室里要不要加油？",
+  "gold_chunk_id": "d18bc7f0-3dfa-510d-818f-1ea163df1009",
+  "page": 32,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "这个表里，分接档位从1到9，触头连接方式是怎么对应变化的？",
+  "gold_chunk_id": "7b46c4ad-745f-5e84-bb41-e2fed72c7037",
+  "page": 34,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "概述"
+ },
+ {
+  "question": "这个表里分接档位9下面怎么还有个2，是不是写错了？",
+  "gold_chunk_id": "ac6aa4d4-2185-53fa-bfbe-97c7e9530378",
+  "page": 35,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "概述"
+ },
+ {
+  "question": "变压器地震试验时，如果没法把整个变压器器身都放上振动台，台面输入的加速度要怎么考虑才准确？",
+  "gold_chunk_id": "6deb550d-134a-50ba-a940-1427a0de8cec",
+  "page": 36,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "地震设防烈度7度时，电气设施设计地震加速度值对应是多少？",
+  "gold_chunk_id": "77edb302-4c1f-533f-9d17-65828da5912e",
+  "page": 37,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ },
+ {
+  "question": "地震影响系数最大值场地调整系数在0.05g和0.10g设计基本地震加速度下，Ⅰ0类场地的系数分别是多少？",
+  "gold_chunk_id": "e8be42a5-ada0-5330-8f79-9e758eb9ac4f",
+  "page": 39,
+  "source": "GB_T_46131-2025_特高压变压器分接开关技术要求与试验方法.pdf",
+  "semantic_type": "标准要求"
+ }
+]

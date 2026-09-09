@@ -1,0 +1,25 @@
+{
+ "unseen_n": 28,
+ "source": "llm",
+ "candidate_chunks": 149,
+ "results": {
+  "base": {
+   "recall@5": 0.9643,
+   "mrr@10": 0.8304,
+   "hits@5": 27,
+   "valid_n": 28
+  },
+  "ft": {
+   "recall@5": 0.9286,
+   "mrr@10": 0.8245,
+   "hits@5": 26,
+   "valid_n": 28
+  }
+ },
+ "delta": {
+  "recall@5": -0.0357,
+  "mrr@10": -0.0059,
+  "hits@5": -1
+ },
+ "conclusion": "FT 未破坏泛化（未见知识召回基本持平，差异在单样本噪声内）"
+}
