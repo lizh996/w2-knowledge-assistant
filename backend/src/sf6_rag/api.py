@@ -39,6 +39,7 @@ from sf6_rag.retrieve import (  # noqa: E402
 from sf6_rag.generate import FALLBACK_TEXT, format_citation  # noqa: E402
 from sf6_rag.auth import login, get_current_user, verify_token, User  # noqa: E402
 from sf6_rag import pipeline  # noqa: E402
+from sf6_rag import agent  # noqa: E402
 
 app = FastAPI(title="变压器检测维护知识库问答", version="1.0.0")
 
@@ -886,6 +887,26 @@ def ask(req: AskRequest, user: User = Depends(_require_auth)):
         images=images,
         mermaid=mermaid,
     )
+
+
+class AgentRequest(BaseModel):
+    question: str
+
+
+@app.post("/ask_agent")
+def ask_agent(req: AgentRequest, user: User = Depends(_require_auth)):
+    """Agentic RAG 演示端点：DeepSeek function calling 自主决策。
+
+    只读：LLM 自主决定调 list_documents / search_knowledge / 直答 / 拒答，
+    多轮循环后出中文答案。检索复用 retrieve()，不改 /ask 与检索逻辑。
+    """
+    question = (req.question or "").strip()
+    if not question:
+        raise HTTPException(status_code=422, detail="question 不能为空")
+    try:
+        return agent.run_agent(question)
+    except Exception as exc:  # 检索/LLM 超时兜底 → 504
+        raise HTTPException(status_code=504, detail=f"Agent 执行失败: {type(exc).__name__}: {str(exc)[:200]}")
 
 
 # ============ 评测历史（趋势图数据源） ============
