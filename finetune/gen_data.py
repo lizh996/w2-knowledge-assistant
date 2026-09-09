@@ -47,13 +47,13 @@ PROMPT = """你是电力设备检测领域的数据标注专家。以下是国�
 只输出 JSON 数组，格式: [{{"query":"...","question_type":"..."}}]，不要其他文字。"""
 
 def gen_for_chunk(c):
-    text = c["text"][:600]
+    text = c["text"][:512]
     out = call_llm(PROMPT.format(text=text, page=c["page"], source=c["source"]))
     out = out.strip().strip("```json").strip("```").strip()
     qs = json.loads(out)
     # hard_negative: 同 source 其他块随机 2 个
     same_src = [x for x in chunks if x["source"] == c["source"] and x["chunk_id"] != c["chunk_id"]]
-    negs = [x["text"][:300] for x in random.sample(same_src, min(2, len(same_src)))]
+    negs = [x["text"][:512] for x in random.sample(same_src, min(2, len(same_src)))]
     rows = []
     for q in qs[:9]:
         rows.append({"query": q["query"], "pos": [text],
@@ -71,7 +71,7 @@ if __name__ == "__main__":
             try:
                 all_train.extend(fut.result())
             except Exception as e:
-                print(f"  ❌ {futures[fut]['chunk_id']} 失败: {str(e)[:80]}")
+                print(f"  [FAIL] {futures[fut]['chunk_id']} 失败: {str(e)[:80]}")
             done += 1
             if done % 10 == 0:
                 print(f"  进度 {done}/{len(chunks)}")
@@ -80,14 +80,8 @@ if __name__ == "__main__":
     with open(os.path.join(BASE, "train.jsonl"), "w", encoding="utf-8") as f:
         for r in all_train:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    print(f"\n✅ 训练数据: {len(all_train)} 条 -> train.jsonl")
+    print(f"\n[OK] 训练数据: {len(all_train)} 条 -> train.jsonl")
 
-    # 补评测集到 300+（用训练数据里的 query 补）
-    seen = {e["question"] for e in eval_set}
-    for r in all_train:
-        if r["query"] not in seen and len(eval_set) < 350:
-            eval_set.append({"question": r["query"], "gold_chunk_id": r["knowledge_id"],
-                             "page": 0, "source": "train-query"})
-            seen.add(r["query"])
+    # 评测集只保留 question_kwd 种子（与训练 query 零重叠，杜绝训练泄漏）
     json.dump(eval_set, open(os.path.join(BASE, "eval_retrieval_set.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print(f"✅ 评测集: {len(eval_set)} 条 -> eval_retrieval_set.json")
+    print(f"[OK] 评测集: {len(eval_set)} 条 -> eval_retrieval_set.json (仅 question_kwd 种子)")
