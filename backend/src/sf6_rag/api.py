@@ -192,6 +192,11 @@ def _organize_context(question: str, ranked: list[dict]) -> tuple[list[dict], di
             vecs = _embed_texts([(h.get("content") or "")[:400] for h in kept])
             unique: list[dict] = []
             for i, h in enumerate(kept):
+                # 图块（image_path 非空）豁免去重：图是独立展示资产，
+                # 其 content 常与同源文本块相似，但删了会丢图（MinerU 图语义块场景）
+                if h.get("image_path"):
+                    unique.append(h)
+                    continue
                 dup = any(_cosine(vecs[i], vecs[j]) >= _CONTEXT_SIM_THRESHOLD for j in range(i))
                 if not dup:
                     unique.append(h)
