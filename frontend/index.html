@@ -775,6 +775,14 @@
       padding: 8px 10px;
       line-height: 1.6;
     }
+    .agent-modes { display: flex; gap: 8px; margin-bottom: 8px; }
+    .mode-chip { padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: transparent; color: inherit; font-size: 12px; cursor: pointer; opacity: .6; transition: all .15s; }
+    .mode-chip:hover { opacity: 1; }
+    .mode-chip.active { opacity: 1; background: #5a3cd8; border-color: #5a3cd8; color: #fff; }
+    .agent-plan { margin-top: 10px; padding: 10px 12px; border-left: 3px solid #5a3cd8; background: rgba(90,60,216,.10); border-radius: 6px; }
+    .agent-plan-title { font-size: 12px; opacity: .75; margin-bottom: 6px; }
+    .agent-step { font-size: 12px; margin: 4px 0; line-height: 1.55; }
+    .agent-step code { background: rgba(0,0,0,.20); padding: 1px 6px; border-radius: 4px; font-size: 11px; }
     .composer-meta {
       display: flex;
       align-items: center;
@@ -1228,6 +1236,10 @@
 
       <section class="composer-wrap">
         <div class="composer">
+          <div class="agent-modes">
+            <button type="button" class="mode-chip active" id="modeChipNormal" onclick="setAskMode('normal')">⚙️ 普通检索</button>
+            <button type="button" class="mode-chip" id="modeChipAgent" onclick="setAskMode('agent')">🤖 Agent 自主决策</button>
+          </div>
           <div class="composer-box">
             <textarea id="question" placeholder="询问 变压器油检测、取样要求或标准条款（带页码）"></textarea>
             <button id="askBtn" onclick="ask()" aria-label="发送问题">→</button>
@@ -1275,6 +1287,20 @@
     const chatHistory = [];
     let liveFlowTimer = null;
     let messageSeq = 0;
+    // 问答模式：normal=固定流水线（/ask）；agent=LLM 自主决策工具调用（/ask_agent）
+    let askMode = localStorage.getItem('ask_mode') || 'normal';
+    function setAskMode(mode) {
+      askMode = mode === 'agent' ? 'agent' : 'normal';
+      localStorage.setItem('ask_mode', askMode);
+      const n = document.getElementById('modeChipNormal');
+      const a = document.getElementById('modeChipAgent');
+      if (n) n.classList.toggle('active', askMode === 'normal');
+      if (a) a.classList.toggle('active', askMode === 'agent');
+      const box = document.getElementById('question');
+      if (box) box.placeholder = askMode === 'agent'
+        ? 'Agent 模式：模型自主决定 列文档/检索/直答/拒答…'
+        : '询问 变压器油检测、取样要求或标准条款（带页码）';
+    }
 
     if (!token) goLogin('请先登录后再使用问答页面。');
     document.getElementById('roleBadge').textContent = '角色：' + role;
@@ -1565,8 +1591,29 @@
       return `<div class="media">${images}${mermaids}</div>`;
     }
 
+    function renderAgentCallsHTML(calls) {
+      if (!calls || !calls.length) return '';
+      const steps = calls.map((c, i) => {
+        const name = c.tool || c.name || 'tool';
+        const args = (c.args && Object.keys(c.args).length) ? ' ' + JSON.stringify(c.args) : '';
+        const n = (c.n_results !== undefined && c.n_results !== null) ? ` → ${c.n_results} 条` : '';
+        return `<div class="agent-step">${i + 1}. <code>${escapeHtml(name)}</code>${escapeHtml(args)}${n}</div>`;
+      }).join('');
+      return `<div class="agent-plan"><div class="agent-plan-title">🤖 Agent 决策轨迹（模型自主选择工具，非固定流水线）</div>${steps}</div>`;
+    }
+
     function renderAssistantDetails(message) {
       if (message.loading) return renderLiveFlowHTML(message);
+      if (message.agentCalls) {
+        // Agent 模式：展示"模型调了哪些工具"（答辩演示的决策过程）+ 命中原图
+        return `<details class="evidence-toggle">
+        <summary>查看 Agent 决策与图证</summary>
+        <div class="evidence-body">
+          ${renderAgentCallsHTML(message.agentCalls)}
+          ${renderMediaHTML(message.data)}
+        </div>
+      </details>`;
+      }
       if (!message.trace) return '';
       return `<details class="evidence-toggle">
         <summary>查看证据详情</summary>
@@ -1578,6 +1625,9 @@
         </div>
       </details>`;
     }
+
+    // 启动时同步模式开关 UI（localStorage 记忆）
+    window.addEventListener('DOMContentLoaded', () => setAskMode(askMode));
 
     function renderChatHistory() {
       const box = document.getElementById('chatHistory');
@@ -1605,7 +1655,7 @@
         return `<article class="message assistant">
           <div class="avatar">AI</div>
           <div class="bubble-wrap">
-            <div class="bubble${bubbleClass}">${bubbleContent}${message.loading ? '' : citations}</div>
+            <div class="bubble${bubbleClass}">${bubbleContent}${message.loading ? '' : citations}${(!message.loading && message.agentCalls) ? renderAgentCallsHTML(message.agentCalls) : ''}</div>
             ${renderAssistantDetails(message)}
           </div>
         </article>`;
@@ -1713,26 +1763,42 @@
       loading.textContent = '检索中…';
       clearError();
 
+      const isAgent = askMode === 'agent';
+      if (isAgent) loading.textContent = 'Agent 决策中…';
       try {
-        const resp = await fetch(API_BASE + '/ask', {
+        const resp = await fetch(API_BASE + (isAgent ? '/ask_agent' : '/ask'), {
           method: 'POST',
           headers: { ...authHeaders(), 'Content-Type': 'application/json' },
-          body: JSON.stringify({ question, history })
+          body: JSON.stringify(isAgent ? { question } : { question, history })
         });
         if (resp.status === 401) { logout(); return; }
         if (!resp.ok) throw new Error(await readErrorDetail(resp));
         const data = await resp.json();
         stopLiveFlow();
-        Object.assign(pendingMessage, {
-          content: data.answer || '',
-          refused: data.refused,
-          citations: data.citations || [],
-          data,
-          trace: data.trace || null,
-          loading: false,
-        });
+        if (isAgent) {
+          // Agent 响应：{question, refused, answer, calls, images, citations}
+          Object.assign(pendingMessage, {
+            content: data.answer || '',
+            refused: data.refused,
+            citations: data.citations || [],
+            agentCalls: data.calls || [],
+            data: { images: data.images || [], mermaid: data.mermaid || [], trace: null },
+            trace: null,
+            loading: false,
+          });
+        } else {
+          Object.assign(pendingMessage, {
+            content: data.answer || '',
+            refused: data.refused,
+            citations: data.citations || [],
+            data,
+            trace: data.trace || null,
+            loading: false,
+          });
+        }
         renderChatHistory();
-        loading.textContent = data.refused ? '标准依据不足' : '检索链路完成';
+        loading.textContent = data.refused ? '标准依据不足'
+          : isAgent ? 'Agent 自主决策完成' : '检索链路完成';
       } catch (e) {
         const message = requestErrorMessage(e);
         stopLiveFlow();
