@@ -190,7 +190,10 @@ def run_agent(question: str) -> dict:
                         images.append(ip)
                     pg = h.get("page")
                     if pg is not None:
-                        cit = format_citation(h.get("source") or "", pg)
+                        from sf6_rag.page_map import page_label
+                        _src = h.get("source") or ""
+                        _lbl = page_label(_src, pg)
+                        cit = f"[{_src} · {_lbl}]" if _lbl else f"[{_src} · PDF 第 {pg} 页]"
                         if cit not in citations:
                             citations.append(cit)
             else:

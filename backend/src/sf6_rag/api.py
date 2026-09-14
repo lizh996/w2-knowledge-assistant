@@ -819,11 +819,16 @@ def ask(req: AskRequest, user: User = Depends(_require_auth)):
         answer = context_blocks[0]["content"][:400] if context_blocks else reranked[0]["content"][:400]
 
     citation_start = time.time()
-    citations = [
-        format_citation(r.get("source") or SOURCE_NAME, r["page"])
-        for r in context_blocks  # 诚实：引用=实际进 LLM 的块（去重/过滤后）
-        if r.get("page")
-    ]
+    # 页码显示：优先"印刷页（PDF 页）"双标注（读者按页脚号或阅读器页序都能对上）
+    from sf6_rag.page_map import page_label
+    citations = []
+    for r in context_blocks:  # 诚实：引用=实际进 LLM 的块（去重/过滤后）
+        if not r.get("page"):
+            continue
+        _src = r.get("source") or SOURCE_NAME
+        _lbl = page_label(_src, r["page"])
+        # 无印刷页码（封面/目次/未映射文档）→ 明确标注为 PDF 页序，避免"第 X 页"歧义
+        citations.append(f"[{_src} · {_lbl}]" if _lbl else f"[{_src} · PDF 第 {r['page']} 页]")
     steps.append(_step("citation", "引用输出", "done", _ms(citation_start), {"count": len(citations)}))
 
     # 从 rerank 后结果收集图原图路径 + mermaid 流程图（供前端展示）
